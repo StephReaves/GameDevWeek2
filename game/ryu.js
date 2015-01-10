@@ -19,7 +19,7 @@ function create () {
     s: game.input.keyboard.addKey(83),
     d: game.input.keyboard.addKey(68),
     //hadoken
-    f: game.input.keyboard.addKey(70)
+    h: game.input.keyboard.addKey(72)
   };
 
 
