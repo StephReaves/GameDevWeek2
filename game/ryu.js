@@ -1,12 +1,12 @@
-var state = state || {};
+var Ryu = {};
 
-state.preload = function() {
+Ryu.preload = function() {
   game.load.image('ryuNormal', 'assets/ryu/ryu_normal.png');
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
   game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
 };
 
-state.create = function() {
+Ryu.create = function() {
   ryu = game.add.image(100,0,'ryuNormal');
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -22,7 +22,7 @@ state.create = function() {
   };
 };
 
-state.update = function() {
+Ryu.update = function() {
   if (playerKeys.w.isDown) {
     console.log('move up');
   }
