@@ -38,7 +38,20 @@ function update () {
   else if (playerKeys.d.isDown) {
     console.log('move right');
   }
-  else if (playerKeys.f.isDown) {
-    console.log('HADOKEN!');
+  else if (playerKeys.h.isDown) {
+    chuckHadoken(BlueHadokens, 'blueHadoken');
+  }
+}
+
+function chuckHadoken (hadokens, hadokenImage) {
+  if (game.time.now > hadokenRecoverTime) {
+    var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
+    if (playerKeys.a.isDown) {
+      hadoken.body.velocity.x = -400;
+    }
+    else{
+      hadoken.body.velocity.x = 400;
+    }
+    hadokenRecoverTime = game.time.now + 300;
   }
 }
