@@ -3,12 +3,13 @@ var game = game || new Phaser.Game(800,600,Phaser.AUTO,'ryuman',{preload: preloa
 function preload () {
   game.load.image('ryuNormal', 'assets/ryu/ryu_normal.png');
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
+  game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
 }
 
 function create () {
   ryu = game.add.image(100,0,'ryuNormal');
-  BlueHadokens = game.add.group();
-  BlueHadokens.enableBody = true;
+  Hadokens = game.add.group();
+  Hadokens.enableBody = true;
 
   playerKeys = {
     //movement
