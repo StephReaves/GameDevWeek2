@@ -5,8 +5,6 @@ function preload () {
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
 }
 
-var hadokenRecoverTime = 0;
-
 function create () {
   ryu = game.add.image(100,0,'ryuNormal');
   BlueHadokens = game.add.group();
@@ -39,26 +37,23 @@ function update () {
     console.log('move right');
   }
 
-  if (playerKeys.h.isDown) {
+  playerKeys.h.onDown.add(function(key){
     if (playerKeys.a.isDown) {
       chuckHadoken(BlueHadokens, 'blueHadoken', 'left');
     }
     else{
       chuckHadoken(BlueHadokens, 'blueHadoken', 'right');
     }
-  }
+  }, this);
+
 }
 
 function chuckHadoken (hadokens, hadokenImage, direction) {
-  if (game.time.now > hadokenRecoverTime) {
     var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
     if (direction === 'left') {
       hadoken.body.velocity.x = -400;
-      console.log('fire backwards');
     }
     else{
       hadoken.body.velocity.x = 400;
     }
-    hadokenRecoverTime = game.time.now + 250;
-  }
 }
