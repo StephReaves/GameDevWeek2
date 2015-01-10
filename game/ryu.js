@@ -40,12 +40,25 @@ function update () {
 
   playerKeys.h.onDown.add(function(key){
     if (playerKeys.a.isDown) {
-      chuckHadoken(BlueHadokens, 'blueHadoken', 'left');
+      chuckHadoken(Hadokens, 'blueHadoken', 'left');
     }
     else{
-      chuckHadoken(BlueHadokens, 'blueHadoken', 'right');
+      chuckHadoken(Hadokens, 'blueHadoken', 'right');
     }
   }, this);
+
+  if (playerKeys.h.isDown) {
+    if (playerKeys.h.duration >= 500){
+      playerKeys.h.onUp.add(function(key){
+        if (playerKeys.a.isDown) {
+          chuckHadoken(Hadokens, 'redHadoken', 'left');
+        }
+        else{
+          chuckHadoken(Hadokens, 'redHadoken', 'right');
+        }
+      });
+    }
+  }
 
 }
 
