@@ -48,17 +48,20 @@ function update () {
   }, this);
 
   if (playerKeys.h.isDown) {
-    if (playerKeys.h.duration >= 500){
-      playerKeys.h.onUp.add(function(key){
+    var duration = playerKeys.h.duration;
+    playerKeys.h.onUp.add(function(key){
+      if (duration >= 500) {
+        duration = 0;
         if (playerKeys.a.isDown) {
           chuckHadoken(Hadokens, 'redHadoken', 'left');
         }
         else{
           chuckHadoken(Hadokens, 'redHadoken', 'right');
         }
-      });
-    }
+      }
+    }, this);
   }
+
 
 }
 
