@@ -1,12 +1,12 @@
-var game = game || new Phaser.Game(800,600,Phaser.AUTO,'ryuman',{preload: preload, create: create, update:update});
+var state = state || {};
 
-function preload () {
+state.preload = function() {
   game.load.image('ryuNormal', 'assets/ryu/ryu_normal.png');
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
   game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
-}
+};
 
-function create () {
+state.create = function() {
   ryu = game.add.image(100,0,'ryuNormal');
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -20,11 +20,9 @@ function create () {
     //hadoken
     h: game.input.keyboard.addKey(72)
   };
+};
 
-
-}
-
-function update () {
+state.update = function() {
   if (playerKeys.w.isDown) {
     console.log('move up');
   }
@@ -61,16 +59,14 @@ function update () {
       }
     }, this);
   }
-
-
-}
+};
 
 function chuckHadoken (hadokens, hadokenImage, direction) {
-    var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
-    if (direction === 'left') {
-      hadoken.body.velocity.x = -400;
-    }
-    else{
-      hadoken.body.velocity.x = 400;
-    }
+  var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
+  if (direction === 'left') {
+    hadoken.body.velocity.x = -400;
+  }
+  else{
+    hadoken.body.velocity.x = 400;
+  }
 }
