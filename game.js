@@ -3,11 +3,12 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
 	game.load.image('megaman', 'assets/megaman.jpg');
+	game.load.image('sky', 'assets/mmbackground.jpg');
 }
 
 function create() {
-
-    playerSprite = game.add.sprite(0, 0, 'megaman');
+		game.add.sprite(0, 0, 'sky');
+    playerSprite = game.add.sprite(800, 600, 'megaman');
     game.physics.enable(playerSprite, Phaser.Physics.ARCADE);
     playerSprite.body.collideWorldBounds = true;
 
