@@ -1,4 +1,4 @@
-var playerImage;
+var playerSprite;
 
 var game = new Phaser.Game(
 		800, 600, Phaser.AUTO, '',
@@ -7,13 +7,16 @@ var game = new Phaser.Game(
 	);
 
 function preload() {
-game.load.image('playerImage', 'assets/megaman.gif')
-}
+	game.load.image('megaman', 'assets/megaman.jpg')
+};
 
 function create() {
+	playerSprite = game.add.sprite(game.world.centerX, 0, 'megaman');
+	playerSprite.acceleration.y = 200;
+	playerSprite.acceleration.x = 100;
 
-}
+};
 
 function update() {
 
-}
+};
