@@ -1,9 +1,11 @@
 var Platform = {};
 
 var platforms;
+var ground;
+var ledge;
 
 Platform.preload = function() {
-	game.load.image('platform','assets/imgs/platform.png');
+	game.load.image('ground','assets/imgs/platform.png');
 }
 
 Platform.create = function() {
@@ -12,8 +14,12 @@ Platform.create = function() {
 	platforms.enableBody = true;
 
 	// Ground platform
-	var ground = platforms.create(0, game.world.height - 64, 'ground');
+	ground = platforms.create(0, game.world.height - 64, 'ground');
 	ground.scale.setTo(2,2);
 	ground.body.immovable = true;
+
+	ledge = platforms.create(400,400,'ground');
+	ledge.body.immovable = true;
+	ledge = platforms.create(-150,250,'ground');
 
 }

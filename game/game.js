@@ -8,7 +8,7 @@ State.preload = function(){
 };
 State.create = function(){
   game.add.sprite(0, 0, 'background');
-  Platform.preload();
+  Platform.create();
   Ryu.create();
   Enemy.create();
 };
