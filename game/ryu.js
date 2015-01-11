@@ -20,6 +20,7 @@ Ryu.create = function() {
     //hadoken
     h: game.input.keyboard.addKey(72)
   };
+  game.camera.follot(ryu)
 };
 
 Ryu.update = function() {
@@ -69,4 +70,9 @@ Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
   else{
     hadoken.body.velocity.x = 400;
   }
+};
+
+Ryu.render = function() {
+  game.debug.cameraInfo(game.camera, 32, 32);
+  game.debug.spriteCoords(ryu, 32, 500);
 };
