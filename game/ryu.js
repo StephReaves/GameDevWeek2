@@ -7,9 +7,12 @@ Ryu.preload = function() {
 };
 
 Ryu.create = function() {
-  ryu = game.add.image(100,0,'ryuNormal');
+  ryu = game.add.image(game.world.centerX, 520,'ryuNormal');
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
+  game.physics.enable('ryuNormal', Phaser.Physics.ARCADE);
+  ryu.anchor.setTo(.5, .5);
+  // ryu.body.collideWorldBounds = true;
 
   playerKeys = {
     //movement
@@ -23,17 +26,19 @@ Ryu.create = function() {
 };
 
 Ryu.update = function() {
-  if (playerKeys.w.isDown) {
+   if (playerKeys.w.isDown) {
     console.log('move up');
   }
   else if (playerKeys.a.isDown) {
-    console.log('move left');
+    ryu.x -= 5;
+    ryu.scale.x = -1;
   }
   else if (playerKeys.s.isDown) {
     console.log('move down/duck?');
   }
   else if (playerKeys.d.isDown) {
-    console.log('move right');
+    ryu.x += 5;
+    ryu.scale.x = 1;
   }
 
   playerKeys.h.onDown.add(function(key){
