@@ -6,6 +6,13 @@ Enemy.preload = function() {
 
 Enemy.create = function() {
 	enemy = game.add.image(250,0,'enemy');
+	game.physics.arcade.enable(enemy);
+	enemy.body.bounce.y = 0.2;
+	enemy.body.gravity.y = 500;
+	enemy.body.collideWorldBounds = true;
+	enemy.animations.add('left',[0,1],10,true);
+	enemy.animations.add('right',[1,2],10,true);
+	enemy.body.velocity.x = 100;
 };
 
 Enemy.update = function() {
