@@ -20,7 +20,7 @@ Ryu.create = function() {
     //hadoken
     h: game.input.keyboard.addKey(72)
   };
-  game.camera.follot(ryu)
+  game.camera.follow(ryu)
 };
 
 Ryu.update = function() {
