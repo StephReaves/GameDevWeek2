@@ -38,10 +38,10 @@ Ryu.update = function() {
 
   playerKeys.h.onDown.add(function(key){
     if (playerKeys.a.isDown) {
-      chuckHadoken(Hadokens, 'blueHadoken', 'left');
+      this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
     }
     else{
-      chuckHadoken(Hadokens, 'blueHadoken', 'right');
+      this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
     }
   }, this);
 
@@ -51,17 +51,17 @@ Ryu.update = function() {
       if (duration >= 500) {
         duration = 0;
         if (playerKeys.a.isDown) {
-          chuckHadoken(Hadokens, 'redHadoken', 'left');
+          this.chuckHadoken(Hadokens, 'redHadoken', 'left');
         }
         else{
-          chuckHadoken(Hadokens, 'redHadoken', 'right');
+          this.chuckHadoken(Hadokens, 'redHadoken', 'right');
         }
       }
     }, this);
   }
 };
 
-function chuckHadoken (hadokens, hadokenImage, direction) {
+Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
   var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
@@ -69,4 +69,4 @@ function chuckHadoken (hadokens, hadokenImage, direction) {
   else{
     hadoken.body.velocity.x = 400;
   }
-}
+};
