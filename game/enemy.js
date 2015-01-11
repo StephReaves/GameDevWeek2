@@ -16,7 +16,9 @@ Enemy.create = function() {
 };
 
 Enemy.update = function() {
-	// If health of sprite reaches 0, kill sprite
+
+	game.physics.arcade.collide(enemy, platform)
+
 	if (enemy.health < 0)
 	{
 		enemy.destroy();
