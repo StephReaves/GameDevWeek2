@@ -70,7 +70,7 @@ Ryu.create = function() {
 };
 
 Ryu.update = function() {
- if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
+if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
   ryu.body.velocity.y = -150;
   jumpTimer = game.time.now + 750;
   jump.play();
@@ -93,9 +93,10 @@ else {
   ryu.animations.stop();
   ryu.frame = 0;
 }
+
 // hadoken functionality is working, but the animation is not yet.
 playerKeys.h.onDown.add(function(key){
-  if (playerKeys.a.isDown) {
+if (playerKeys.a.isDown) {
       // ryuMove.animations.play('hadoken!');
       attack.play();
       this.chuckHadoken(Hadokens, 'left');
