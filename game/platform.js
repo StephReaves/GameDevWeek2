@@ -5,7 +5,7 @@ var ground;
 var ledge;
 
 Platform.preload = function() {
-	game.load.image('ground','assets/imgs/platform.png');
+	game.load.image('ground','assets/imgs/platform2.png');
 }
 
 Platform.create = function() {
