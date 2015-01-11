@@ -15,22 +15,34 @@ RyuMove.create = function() {
 
 	ryuMove.animations.add('right', [1, 2, 3, 4], 10, true); 
 
-	cursors = game.input.keyboard.createCursorKeys();
-
+	// cursors = game.input.keyboard.createCursorKeys();
+	playerKeys = {
+	    //movement
+	    w: game.input.keyboard.addKey(87),
+	    a: game.input.keyboard.addKey(65),
+	    s: game.input.keyboard.addKey(83),
+	    d: game.input.keyboard.addKey(68),
+	    //hadoken
+	    h: game.input.keyboard.addKey(72)
+  };
 
 }
 
 RyuMove.update = function() {
-	ryuMove.body.velocity.x = 0;
 	
-	if (cursors.right.isDown) {
-		ryuMove.body.velocity.x = 150;
-		ryuMove.animations.play('right');
-	} else {
-		ryuMove.animations.stop();
-		ryuMove.frame = 4;
-	}
-	if (cursors.up.isDown && ryuMove.body.touching.down) {
-		ryuMove.body.velocity.y	= -250;
-	}
+	if (playerKeys.w.isDown) {
+    	ryuMove.body.velocity.x = 150;
+    	ryuMove.animations.play('right');
+    	console.log("move right");
+  	} 
+	// if (cursors.right.isDown) {
+	// 	ryuMove.body.velocity.x = 150;
+	// 	ryuMove.animations.play('right');
+	// } else {
+	// 	ryuMove.animations.stop();
+	// 	ryuMove.frame = 4;
+	// }
+	// if (cursors.up.isDown && ryuMove.body.touching.down) {
+	// 	ryuMove.body.velocity.y	= -250;
+	// }
 }
