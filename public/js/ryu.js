@@ -9,6 +9,8 @@ var damage;
 var fireRate = 100;
 var nextFire = 0;
 
+var ryuHealth = 10;
+
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
@@ -122,7 +124,20 @@ if (playerKeys.h.isDown) {
         }
       }
     }, this);
-}
+  }
+
+  // If Ryu touches enemy, reduce health
+  enemyCollision = game.physics.arcade.collide(ryu, enemy);
+  if (enemyCollision === true)
+  {
+    ryu.ryuHealth--;
+  }
+
+  if (ryuHealth < 0)
+  {
+    ryu.destroy();
+    // Call method to end or restart game
+  }
 };
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {

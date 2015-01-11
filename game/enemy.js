@@ -1,13 +1,20 @@
 var Enemy = {};
 
+var enemyHealth = 2;
+
 Enemy.preload = function() {
 	game.load.image('enemy', 'assets/enemy/enemy.png');
 };
 
 Enemy.create = function() {
+	game.physics.startSystem(Phaser.Physics.ARCADE);
 	enemy = game.add.image(game.world.centerX, 320,'enemy');
-	game.physics.enable('enemy', Phaser.Physics.ARCADE);
-	// enemy.physics.body.setSize(4,32,0,0);
+	console.log(enemy);
+	console.log(enemy.body);
+	game.physics.arcade.enable(enemy);
+
+	// Enemy physical attributes
+	enemy.physics.body.setSize(4,32,0,0);
 	enemy.body.bounce.y = 0.2;
 	enemy.body.gravity.y = 500;
 	enemy.body.collideWorldBounds = true;
@@ -20,24 +27,16 @@ Enemy.update = function() {
 
 	game.physics.arcade.collide(enemy, platforms)
 
+	// If hadoken touches enemy, reduce health
+  hadokenCollision = game.physics.arcade.collide(enemy, Hadokens);
+  if (hadokenCollision === true)
+  {
+    enemy.enemyHealth--;
+  }
+
 	if (enemy.health < 0)
 	{
-		enemy.destroy();
+		enemy.destroy(); // Research animation of death
 	}
+
 };
-
-// Unneccessary OO
-// Enemy.isAlive = function(enemy) {
-// 	if (enemy.health > 0)
-// 	{
-// 		return true;
-// 	}
-// 	else
-// 	{
-// 		return false;
-// 	}
-// };
-
-// function destroySprite (sprite) {
-// 	sprite.destroy();
-// }
