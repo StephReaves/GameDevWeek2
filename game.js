@@ -7,6 +7,7 @@ var game = new Phaser.Game(
 	);
 
 function preload() {
+
 	game.load.image('megaman', 'assets/megaman.jpg')
 };
 
