@@ -1,13 +1,14 @@
 var RyuMove = {};
+var ryuMove;
 
 RyuMove.preload = function() {
-	game.load.spritesheet('ryuMove', 'assets/ryu/ryu_ken_spritesheet.png', 32, 48);
+	game.load.spritesheet('ryuMove', 'assets/ryu/ryu_ken_spritesheet.png');
 
 }
 
 RyuMove.create = function() {
-	game.physics.startSystem(Phaser.Physics.ARCADE);
-	ryuMove = game.add.sprite(50, 50, 'ryuMove');
+	// game.physics.startSystem(Phaser.Physics.ARCADE);
+	ryuMove = game.add.sprite(0, 0, 'ryuMove');
 }
 
 RyuMove.update = function() {
