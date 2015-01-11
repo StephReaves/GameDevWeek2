@@ -17,7 +17,7 @@ Enemy.create = function() {
 
 Enemy.update = function() {
 
-	game.physics.arcade.collide(enemy, platform)
+	game.physics.arcade.collide(enemy, platforms)
 
 	if (enemy.health < 0)
 	{
