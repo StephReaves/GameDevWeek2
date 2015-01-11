@@ -15,18 +15,11 @@ RyuMove.create = function() {
 
 	ryuMove.animations.add('right', [1, 2, 3, 4], 10, true); 
 
-	playerKeys = {
-    //movement
-    w: game.input.keyboard.addKey(87),
-    a: game.input.keyboard.addKey(65),
-    s: game.input.keyboard.addKey(83),
-    d: game.input.keyboard.addKey(68),
-    //hadoken
-    // f: game.input.keyboard.addKey(70)
-  };
+	cursors = game.input.keyboard.createCursorKeys();
+	
 
 }
 
 RyuMove.update = function() {
-
+	
 }
