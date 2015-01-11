@@ -5,8 +5,9 @@ Enemy.preload = function() {
 };
 
 Enemy.create = function() {
-	enemy = game.add.image(250,0,'enemy');
-	game.physics.arcade.enable(enemy);
+	enemy = game.add.image(game.world.centerX, 320,'enemy');
+	game.physics.enable('enemy', Phaser.Physics.ARCADE);
+	// enemy.physics.body.setSize(4,32,0,0);
 	enemy.body.bounce.y = 0.2;
 	enemy.body.gravity.y = 500;
 	enemy.body.collideWorldBounds = true;
