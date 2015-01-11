@@ -32,7 +32,7 @@ RyuMove.update = function() {
 	
 	if (playerKeys.w.isDown) {
     	ryuMove.body.velocity.x = 150;
-    	ryuMove.animations.play('right');
+    	ryuMove.animations.play('right', 10 ,true);
     	console.log("move right");
   	} 
 	// if (cursors.right.isDown) {
