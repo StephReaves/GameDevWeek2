@@ -1,5 +1,6 @@
 var Ryu = {};
 var jumpTimer = 0;
+var ryu;
 
 
 Ryu.preload = function() {
@@ -9,14 +10,15 @@ Ryu.preload = function() {
 };
 
 Ryu.create = function() {
-  ryu = game.add.sprite(game.world.centerX, 520,'ryuRun');
-  Hadokens = game.add.group();
-  Hadokens.enableBody = true;
-  game.physics.enable('ryuRun', Phaser.Physics.ARCADE);
+  ryu = game.add.sprite(32, game.world.height - 180,'ryuRun');
+  game.physics.arcade.enable(ryu);
   ryu.anchor.setTo(.5, .5);
+  ryu.body.allowGravity = true;
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
-  // ryu.body.collideWorldBounds = true;
+
+  Hadokens = game.add.group();
+  Hadokens.enableBody = true;
 
   game.physics.arcade.gravity.y = 250;
   // I added gravity in order to have the player jump, but now the hadokens have gravity
