@@ -15,15 +15,15 @@ Enemy.create = function() {
 
 	// Enemy physical attributes
 	enemy.physics.body.setSize(4,32,0,0);
-	enemy.body.bounce.y = 0.2;
-	enemy.body.gravity.y = 500;
-	enemy.body.collideWorldBounds = true;
+	enemy.anchor.setTo(.5,.5);
 	enemy.animations.add('left',[0,1],10,true);
 	enemy.animations.add('right',[1,2],10,true);
-	enemy.body.velocity.x = 100;
 };
 
 Enemy.update = function() {
+
+	enemy.x += 2;
+	enemy.scale.x = 1;
 
 	game.physics.arcade.collide(enemy, platforms)
 
