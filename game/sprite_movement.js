@@ -7,7 +7,7 @@ RyuMove.preload = function() {
 }
 
 RyuMove.create = function() {
-	ryuMove = game.add.sprite(32, game.world.height - 150, 'ryuMove');
+	ryuMove = game.add.sprite(32, game.world.height - 130, 'ryuMove');
 	game.physics.arcade.enable(ryuMove);
 	// ryuMove.body.bounce.y = 0.2;
 	// ryuMove.body.gravity.y = 200;
@@ -31,7 +31,7 @@ RyuMove.create = function() {
 RyuMove.update = function() {
 	
 	if (playerKeys.w.isDown) {
-    	ryuMove.body.velocity.x = 150;
+    	ryuMove.x = 150;
     	ryuMove.animations.play('right', 10 ,true);
     	console.log("move right");
   	} 
