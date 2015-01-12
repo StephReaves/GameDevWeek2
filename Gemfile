@@ -5,7 +5,7 @@ ruby "2.1.3"
 gem 'pg'
 
 # Sinatra driver
-gem 'sinatra'
+gem 'sinatra', '~>1.3.0'
 gem 'sinatra-contrib'
 
 gem 'activesupport', '~>4.1'
@@ -15,7 +15,7 @@ gem 'rake'
 
 gem 'shotgun'
 
-
+gem 'thin', '~> 1.6.3'
 # group :test do
 #   gem 'shoulda-matchers'
 #   gem 'rack-test'
