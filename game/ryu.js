@@ -1,18 +1,38 @@
 var Ryu = {};
+var jumpTimer = 0;
+
 
 Ryu.preload = function() {
-  game.load.image('ryuNormal', 'assets/ryu/ryu_normal.png');
+  game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
   game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
 };
 
 Ryu.create = function() {
-  ryu = game.add.image(game.world.centerX, 520,'ryuNormal');
+  ryu = game.add.sprite(game.world.centerX, 520,'ryuRun');
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
-  game.physics.enable('ryuNormal', Phaser.Physics.ARCADE);
+  game.physics.enable('ryuRun', Phaser.Physics.ARCADE);
   ryu.anchor.setTo(.5, .5);
+  ryu.body.setSize(20, 32, 5, 16);
+  ryu.body.collideWorldBounds = true;
   // ryu.body.collideWorldBounds = true;
+
+  game.physics.arcade.gravity.y = 250;
+  // I added gravity in order to have the player jump, but now the hadokens have gravity
+  // attached to them as well, which makes them sag down
+  // I tried to remove gravity from the hadokens below but I keep getting the error
+  // "cant set property 'allowGravity' of undefined"
+  // I tried two different ways:
+
+  // Hadokens.allowGravity = false;
+  // Hadokens.body.allowGravity = false;
+
+  ryu.animations.add('run', [1,2,3,4], 7, true);
+
+// Currently this animation for doing a hadoken is not working
+  // ryu.animations.add('hadoken!', [5,6], 7, true);
+  // ryu.animations.play('hadoken!');
 
   playerKeys = {
     //movement
@@ -27,8 +47,8 @@ Ryu.create = function() {
 };
 
 Ryu.update = function() {
-   if (playerKeys.w.isDown) {
-    console.log('move up');
+   if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
+    
   }
   else if (playerKeys.a.isDown) {
     ryu.x -= 5;
