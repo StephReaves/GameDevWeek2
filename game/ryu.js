@@ -60,8 +60,9 @@ Ryu.update = function() {
     console.log('move down/duck?');
   }
   else if (playerKeys.d.isDown) {
-    ryu.x += 5;
+    ryu.x += 2;
     ryu.scale.x = 1;
+    ryu.animations.play('run');
   }
 
   playerKeys.h.onDown.add(function(key){
