@@ -29,8 +29,9 @@ RyuMove.create = function() {
 }
 
 RyuMove.update = function() {
-	if (playerKeys.w.isDown) {
+	if (playerKeys.w.isDown && ryuMove.body.touching.down) {
 		console.log('move up');
+		ryuMove.y = -350;
 	}
 	else if (playerKeys.a.isDown) {
     	ryuMove.x -= 2;
@@ -49,6 +50,15 @@ RyuMove.update = function() {
   		ryuMove.animations.stop();
   		ryuMove.frame = 0;
   	}
+
+  	playerKeys.h.onDown.add(function(key){
+		if (playerKeys.a.isDown) {
+		  this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
+		}
+		else{
+		  this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
+		}
+	}, this);
   	if (playerKeys.h.isDown) {
     var duration = playerKeys.h.duration;
     playerKeys.h.onUp.add(function(key){
@@ -63,5 +73,13 @@ RyuMove.update = function() {
       }
     }, this);
   }
-
+}
+RyuMove.chuckHadoken = function(hadokens, hadokenImage, direction) {
+	var hadoken = hadokens.create(ryuMove.x, ryuMove.y, hadokenImage);
+ 	if (direction === 'left') {
+		hadoken.body.velocity.x = -400;
+	}
+	else{
+		hadoken.body.velocity.x = 400;
+	}
 }
