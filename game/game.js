@@ -3,12 +3,10 @@ var State = {};
 State.preload = function(){
   game.load.image('background', 'assets/imgs/mmbackground.jpg');
   Ryu.preload();
-  RyuMove.preload();
 };
 State.create = function(){
   game.add.sprite(0, 0, 'background');
   Ryu.create();
-  RyuMove.create();
 };
 State.update = function(){
   Ryu.update();
