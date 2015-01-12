@@ -1,5 +1,7 @@
 var RyuMove = {};
 var ryuMove;
+var jumpTimer = 0;
+var cursors;
 
 RyuMove.preload = function() {
 	game.load.spritesheet('ryuMove', 'assets/ryu/ryu_run.png', 25.5, 40);
