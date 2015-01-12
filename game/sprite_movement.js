@@ -2,19 +2,19 @@ var RyuMove = {};
 var ryuMove;
 
 RyuMove.preload = function() {
-	game.load.spritesheet('ryuMove', 'assets/ryu/ryu_ken_spritesheet.png', 32, 40);
+	game.load.spritesheet('ryuMove', 'assets/ryu/ryu_run.png', 25.5, 40);
 
 }
 
 RyuMove.create = function() {
-	ryuMove = game.add.sprite(32, game.world.height - 130, 'ryuMove');
-	game.physics.arcade.enable(ryuMove);
+	ryuMove = game.add.sprite(32, game.world.height - 180, 'ryuMove');
+	// game.physics.arcade.enable(ryuMove);
 	// ryuMove.body.bounce.y = 0.2;
 	// ryuMove.body.gravity.y = 200;
-	ryuMove.body.collideWorldBounds = true;
+	// ryuMove.body.collideWorldBounds = true;
 
-	ryuMove.animations.add('right', [1, 2, 3, 4], 10, true); 
-
+	ryuMove.animations.add('right', [1, 2, 3, 4], 5, true); 
+	ryuMove.animations.play('right');
 	// cursors = game.input.keyboard.createCursorKeys();
 	playerKeys = {
 	    //movement
@@ -29,12 +29,15 @@ RyuMove.create = function() {
 }
 
 RyuMove.update = function() {
-	
-	if (playerKeys.w.isDown) {
-    	ryuMove.x = 150;
-    	ryuMove.animations.play('right', 10 ,true);
-    	console.log("move right");
-  	} 
+	ryuMove.x+=0
+	if(ryuMove.x > 800){
+		ryuMove.x= 10;
+	}
+	// if (playerKeys.w.isDown) {
+ //    	ryuMove.x = 150;
+ //    	ryuMove.animations.play('right', 10 ,true);
+ //    	console.log("move right");
+ //  	} 
 	// if (cursors.right.isDown) {
 	// 	ryuMove.body.velocity.x = 150;
 	// 	ryuMove.animations.play('right');

@@ -2,14 +2,19 @@ var State = {};
 
 State.preload = function(){
   game.load.image('background', 'assets/imgs/mmbackground.jpg');
+  game.load.atlasJSONHash('ryuRun', 'ryu.json', 'ryu.png')
   Ryu.preload();
+  RyuMove.preload();
+
 };
 State.create = function(){
   game.add.sprite(0, 0, 'background');
   Ryu.create();
+  RyuMove.create();
 };
 State.update = function(){
   Ryu.update();
+  RyuMove.update();
 };
 State.render = function() {
   Ryu.render();	
