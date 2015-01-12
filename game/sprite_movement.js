@@ -18,17 +18,28 @@ RyuMove.create = function() {
 
 	Hadokens = game.add.group();
 	Hadokens.enableBody = true;
-	Hadokens.allowGravity = false;
+    ryuMove.body.setSize(20, 32, 5, 16);
+
+	// I added gravity in order to have the player jump, but now the hadokens have gravity
+	// attached to them as well, which makes them sag down
+	// I tried to remove gravity from the hadokens below but I keep getting the error
+	// "cant set property 'allowGravity' of undefined"
+	// I tried two different ways:
+
+	// Hadokens.allowGravity = false;
+	// Hadokens.body.allowGravity = false;
 
 	game.physics.arcade.gravity.y = 250;
-	ryuMove.body.bounce.y = 0.2;
     ryuMove.body.collideWorldBounds = true;
     ryuMove.body.setSize(20, 32, 5, 16);
 
 
 	ryuMove.animations.add('run', [1, 2, 3, 4], 7, true); 
-	ryuMove.animations.add('hadoken!', [5,6], 7, true);
-	ryuMove.animations.play('hadoken!');
+
+	// Currently this animation for doing a hadoken is not working
+	// ryuMove.animations.add('hadoken!', [5,6], 7, true);
+	// ryuMove.animations.play('hadoken!');
+
 	playerKeys = {
 	    //movement
 	    w: game.input.keyboard.addKey(87),
@@ -58,7 +69,7 @@ RyuMove.update = function() {
   		console.log('move down/duck');
   	}
   	else if (playerKeys.d.isDown) {
-  		ryuMove.x+=1;
+  		ryuMove.x+=2;
   		ryuMove.scale.x = 1;
   		ryuMove.animations.play('run');
   	}
@@ -66,14 +77,14 @@ RyuMove.update = function() {
   		ryuMove.animations.stop();
   		ryuMove.frame = 0;
   	}
-
+  	// hadoken functionality is working, but the animation is not yet. 
   	playerKeys.h.onDown.add(function(key){
 		if (playerKeys.a.isDown) {
-		  ryuMove.animations.play('hadoken!');	
+		  // ryuMove.animations.play('hadoken!');	
 		  this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
 		}
 		else{
-		  ryuMove.animations.play('hadoken!');	
+		  // ryuMove.animations.play('hadoken!');	
 		  this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
 		}
 	}, this);
@@ -83,11 +94,11 @@ RyuMove.update = function() {
       if (duration >= 500) {
         duration = 0;
         if (playerKeys.a.isDown) {
-		  ryuMove.animations.play('hadoken!');	
+		  // ryuMove.animations.play('hadoken!');	
           this.chuckHadoken(Hadokens, 'redHadoken', 'left');
         }
         else{
-		  ryuMove.animations.play('hadoken!');	
+		  // ryuMove.animations.play('hadoken!');	
           this.chuckHadoken(Hadokens, 'redHadoken', 'right');
         }
       }
