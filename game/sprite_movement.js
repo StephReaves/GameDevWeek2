@@ -26,15 +26,15 @@ RyuMove.create = function() {
 }
 
 RyuMove.update = function() {
-	ryuMove.x+=0
-	if(ryuMove.x > 800){
-		ryuMove.x= 10;
-	}
-	// if (playerKeys.w.isDown) {
- //    	ryuMove.x = 150;
- //    	ryuMove.animations.play('right', 10 ,true);
- //    	console.log("move right");
- //  	} 
+	
+	if (playerKeys.a.isDown) {
+    	ryuMove.x += 3;
+    	ryuMove.scale.x = 1;
+    	ryuMove.animations.play('right');
+  	} else {
+  		ryuMove.animations.stop();
+  		ryuMove.frame = 0;
+  	}
 	// if (cursors.right.isDown) {
 	// 	ryuMove.body.velocity.x = 150;
 	// 	ryuMove.animations.play('right');
@@ -43,6 +43,6 @@ RyuMove.update = function() {
 	// 	ryuMove.frame = 4;
 	// }
 	// if (cursors.up.isDown && ryuMove.body.touching.down) {
-	// 	ryuMove.body.velocity.y	= -250;
+	// 	// ryuMove.y	= -250;
 	// }
 }
