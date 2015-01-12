@@ -35,14 +35,17 @@ RyuMove.create = function() {
 	    d: game.input.keyboard.addKey(68),
 	    //hadoken
 	    h: game.input.keyboard.addKey(72)
-  };
+  	};
+  	cursors = game.input.keyboard.createCursorKeys();
+    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 }
 
 RyuMove.update = function() {
-	if (playerKeys.w.isDown && ryuMove.body.touching.down) {
+	if (playerKeys.w.isDown && ryuMove.body.onFloor() && game.time.now > jumpTimer) {
 		console.log('move up');
-		ryuMove.y = -350;
+		ryuMove.body.velocity.y = -250;
+		jumpTimer = game.time.now + 750;
 	}
 	else if (playerKeys.a.isDown) {
     	ryuMove.x -= 2;
