@@ -49,8 +49,6 @@ RyuMove.create = function() {
 	    //hadoken
 	    h: game.input.keyboard.addKey(72)
   	};
-  	cursors = game.input.keyboard.createCursorKeys();
-    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 }
 
