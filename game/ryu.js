@@ -48,7 +48,8 @@ Ryu.create = function() {
 
 Ryu.update = function() {
    if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
-    
+    ryu.body.velocity.y = -150;
+    jumpTimer = game.time.now + 750;
   }
   else if (playerKeys.a.isDown) {
     ryu.x -= 5;
