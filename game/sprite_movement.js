@@ -17,7 +17,16 @@ RyuMove.create = function() {
 	Hadokens.enableBody = true;
 	ryuMove.anchor.setTo(.5,.5);
 
+	game.physics.arcade.gravity.y = 250;
+	game.physics.enable(ryuMove, Phaser.Physics.ARCADE);
+	ryuMove.body.bounce.y = 0.2;
+    ryuMove.body.collideWorldBounds = true;
+    ryuMove.body.setSize(20, 32, 5, 16);
+
+
 	ryuMove.animations.add('run', [1, 2, 3, 4], 7, true); 
+	ryuMove.animations.add('hadoken!', [5,6], 7, true);
+	ryuMove.animations.play('hadoken!');
 	playerKeys = {
 	    //movement
 	    w: game.input.keyboard.addKey(87),
