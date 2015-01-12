@@ -67,9 +67,11 @@ RyuMove.update = function() {
 
   	playerKeys.h.onDown.add(function(key){
 		if (playerKeys.a.isDown) {
+		  ryuMove.animations.play('hadoken!');	
 		  this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
 		}
 		else{
+		  ryuMove.animations.play('hadoken!');	
 		  this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
 		}
 	}, this);
@@ -79,9 +81,11 @@ RyuMove.update = function() {
       if (duration >= 500) {
         duration = 0;
         if (playerKeys.a.isDown) {
+		  ryuMove.animations.play('hadoken!');	
           this.chuckHadoken(Hadokens, 'redHadoken', 'left');
         }
         else{
+		  ryuMove.animations.play('hadoken!');	
           this.chuckHadoken(Hadokens, 'redHadoken', 'right');
         }
       }
