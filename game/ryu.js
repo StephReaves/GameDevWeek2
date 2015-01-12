@@ -65,6 +65,10 @@ Ryu.update = function() {
     ryu.x += 2;
     ryu.scale.x = 1;
     ryu.animations.play('run');
+  } 
+  else {
+    ryu.animations.stop();
+    ryu.frame = 0;
   }
 // hadoken functionality is working, but the animation is not yet. 
   playerKeys.h.onDown.add(function(key){
