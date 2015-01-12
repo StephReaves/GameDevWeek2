@@ -11,8 +11,6 @@ RyuMove.create = function() {
 	game.physics.arcade.enable(ryuMove);
 
 	ryuMove.animations.add('right', [1, 2, 3, 4], 7, true); 
-	// ryuMove.animations.play('right');
-	// cursors = game.input.keyboard.createCursorKeys();
 	playerKeys = {
 	    //movement
 	    w: game.input.keyboard.addKey(87),
@@ -28,21 +26,12 @@ RyuMove.create = function() {
 RyuMove.update = function() {
 	
 	if (playerKeys.a.isDown) {
-    	ryuMove.x += 3;
+    	ryuMove.x += 2;
     	ryuMove.scale.x = 1;
     	ryuMove.animations.play('right');
   	} else {
   		ryuMove.animations.stop();
   		ryuMove.frame = 0;
   	}
-	// if (cursors.right.isDown) {
-	// 	ryuMove.body.velocity.x = 150;
-	// 	ryuMove.animations.play('right');
-	// } else {
-	// 	ryuMove.animations.stop();
-	// 	ryuMove.frame = 4;
-	// }
-	// if (cursors.up.isDown && ryuMove.body.touching.down) {
-	// 	// ryuMove.y	= -250;
-	// }
+
 }
