@@ -13,12 +13,14 @@ RyuMove.preload = function() {
 RyuMove.create = function() {
 	ryuMove = game.add.sprite(32, game.world.height - 180, 'ryuMove');
 	game.physics.arcade.enable(ryuMove);
+	ryuMove.anchor.setTo(.5,.5);
+	ryuMove.body.allowGravity = true;
+
 	Hadokens = game.add.group();
 	Hadokens.enableBody = true;
-	ryuMove.anchor.setTo(.5,.5);
+	Hadokens.allowGravity = false;
 
 	game.physics.arcade.gravity.y = 250;
-	game.physics.enable(ryuMove, Phaser.Physics.ARCADE);
 	ryuMove.body.bounce.y = 0.2;
     ryuMove.body.collideWorldBounds = true;
     ryuMove.body.setSize(20, 32, 5, 16);
@@ -43,8 +45,8 @@ RyuMove.create = function() {
 
 RyuMove.update = function() {
 	if (playerKeys.w.isDown && ryuMove.body.onFloor() && game.time.now > jumpTimer) {
-		console.log('move up');
-		ryuMove.body.velocity.y = -250;
+		ryuMove.body.velocity.y = -150;
+		ryuMove.animations.play('hadoken!');		
 		jumpTimer = game.time.now + 750;
 	}
 	else if (playerKeys.a.isDown) {
