@@ -3,12 +3,17 @@ var ryuMove;
 
 RyuMove.preload = function() {
 	game.load.spritesheet('ryuMove', 'assets/ryu/ryu_run.png', 25.5, 40);
+	game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
+	game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
 
 }
 
 RyuMove.create = function() {
 	ryuMove = game.add.sprite(32, game.world.height - 180, 'ryuMove');
 	game.physics.arcade.enable(ryuMove);
+	Hadokens = game.add.group();
+	Hadokens.enableBody = true;
+	ryuMove.anchor.setTo(.5,.5);
 
 	ryuMove.animations.add('run', [1, 2, 3, 4], 7, true); 
 	playerKeys = {
@@ -28,7 +33,7 @@ RyuMove.update = function() {
 		console.log('move up');
 	}
 	else if (playerKeys.a.isDown) {
-    	ryuMove.x -= 1;
+    	ryuMove.x -= 2;
     	ryuMove.scale.x = -1;
     	ryuMove.animations.play('run');
   	} 
@@ -42,8 +47,21 @@ RyuMove.update = function() {
   	}
   	else {
   		ryuMove.animations.stop();
-
   		ryuMove.frame = 0;
   	}
+  	if (playerKeys.h.isDown) {
+    var duration = playerKeys.h.duration;
+    playerKeys.h.onUp.add(function(key){
+      if (duration >= 500) {
+        duration = 0;
+        if (playerKeys.a.isDown) {
+          this.chuckHadoken(Hadokens, 'redHadoken', 'left');
+        }
+        else{
+          this.chuckHadoken(Hadokens, 'redHadoken', 'right');
+        }
+      }
+    }, this);
+  }
 
 }
