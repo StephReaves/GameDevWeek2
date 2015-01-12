@@ -8,13 +8,10 @@ RyuMove.preload = function() {
 
 RyuMove.create = function() {
 	ryuMove = game.add.sprite(32, game.world.height - 180, 'ryuMove');
-	// game.physics.arcade.enable(ryuMove);
-	// ryuMove.body.bounce.y = 0.2;
-	// ryuMove.body.gravity.y = 200;
-	// ryuMove.body.collideWorldBounds = true;
+	game.physics.arcade.enable(ryuMove);
 
-	ryuMove.animations.add('right', [1, 2, 3, 4], 5, true); 
-	ryuMove.animations.play('right');
+	ryuMove.animations.add('right', [1, 2, 3, 4], 7, true); 
+	// ryuMove.animations.play('right');
 	// cursors = game.input.keyboard.createCursorKeys();
 	playerKeys = {
 	    //movement
