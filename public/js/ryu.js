@@ -46,7 +46,7 @@ Ryu.update = function() {
     jumpTimer = game.time.now + 750;
   }
   else if (playerKeys.a.isDown) {
-    ryu.x -= 2;
+    ryu.body.velocity.x = -200;
     ryu.scale.x = -1;
     ryu.animations.play('run');
   }
@@ -54,7 +54,7 @@ Ryu.update = function() {
     console.log('move down/duck?');
   }
   else if (playerKeys.d.isDown) {
-    ryu.x += 2;
+    ryu.body.velocity.x = 200;
     ryu.scale.x = 1;
     ryu.animations.play('run');
   }
