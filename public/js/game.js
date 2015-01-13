@@ -9,7 +9,10 @@ State.preload = function(){
 };
 State.create = function(){
   game.physics.startSystem(Phaser.Physics.ARCADE);
-  game.add.sprite(0, 0, 'background');
+	// game.add.tilemap('level1');
+	game.add.tileSprite(0, 0, 4060, 224, 'background');
+  game.world.setBounds(0, 0, 4060, 224);
+  // game.add.sprite(0, 0, 'background');
   Ryu.create();
 	this.map = game.add.tilemap('level1');
 	// 'ryuman_level1' is the name used in Tiled Map Editor
@@ -29,4 +32,4 @@ State.render = function() {
   Ryu.render();
 }
 
-var game = game || new Phaser.Game(800,600,Phaser.AUTO,'ryuman',State);
+var game = game || new Phaser.Game(800,224,Phaser.AUTO,'ryuman',State);
