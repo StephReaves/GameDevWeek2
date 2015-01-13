@@ -1,9 +1,9 @@
 var State = {};
 
 State.preload = function(){
-  game.load.tilemap('level1', 'js/ryu_level1.json', null, Phaser.Tilemap.TILED_JSON);
+  game.load.tilemap('level1', 'assets/levels/level_one.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('background', 'assets/imgs/background_level1.png');
-  game.load.atlasJSONHash('ryuRun', 'ryu.json', 'ryu.png')
+  game.load.atlasJSONHash('ryuRun', 'ryu.json', 'ryu.png');
   Ryu.preload();
 
 };
@@ -30,6 +30,6 @@ State.update = function(){
 };
 State.render = function() {
   Ryu.render();
-}
+};
 
 var game = game || new Phaser.Game(800,224,Phaser.AUTO,'ryuman',State);
