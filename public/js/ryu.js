@@ -20,15 +20,7 @@ Ryu.create = function() {
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
 
-  game.physics.arcade.gravity.y = 250;
-  // I added gravity in order to have the player jump, but now the hadokens have gravity
-  // attached to them as well, which makes them sag down
-  // I tried to remove gravity from the hadokens below but I keep getting the error
-  // "cant set property 'allowGravity' of undefined"
-  // I tried two different ways:
-
-  // Hadokens.allowGravity = false;
-  // Hadokens.body.allowGravity = false;
+  ryu.body.gravity.y = 250;
 
   ryu.animations.add('run', [1,2,3,4], 7, true);
 
@@ -45,7 +37,7 @@ Ryu.create = function() {
     //hadoken
     h: game.input.keyboard.addKey(72)
   };
-  game.camera.follow(ryu)
+  game.camera.follow(ryu);
 };
 
 Ryu.update = function() {
@@ -65,19 +57,19 @@ Ryu.update = function() {
     ryu.x += 2;
     ryu.scale.x = 1;
     ryu.animations.play('run');
-  } 
+  }
   else {
     ryu.animations.stop();
     ryu.frame = 0;
   }
-// hadoken functionality is working, but the animation is not yet. 
+// hadoken functionality is working, but the animation is not yet.
   playerKeys.h.onDown.add(function(key){
     if (playerKeys.a.isDown) {
-      // ryuMove.animations.play('hadoken!'); 
+      // ryuMove.animations.play('hadoken!');
       this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
     }
     else{
-      // ryuMove.animations.play('hadoken!'); 
+      // ryuMove.animations.play('hadoken!');
       this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
     }
   }, this);
@@ -88,11 +80,11 @@ Ryu.update = function() {
       if (duration >= 500) {
         duration = 0;
         if (playerKeys.a.isDown) {
-          // ryuMove.animations.play('hadoken!'); 
+          // ryuMove.animations.play('hadoken!');
           this.chuckHadoken(Hadokens, 'redHadoken', 'left');
         }
         else{
-          // ryuMove.animations.play('hadoken!'); 
+          // ryuMove.animations.play('hadoken!');
           this.chuckHadoken(Hadokens, 'redHadoken', 'right');
         }
       }
