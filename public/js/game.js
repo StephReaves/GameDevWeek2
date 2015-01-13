@@ -1,8 +1,8 @@
 var State = {};
 
 State.preload = function(){
-  game.load.image('background', 'assets/imgs/mmbackground.jpg');
-  game.load.atlasJSONHash('ryuRun', 'ryu.json', 'ryu.png');
+  game.load.image('background', 'assets/imgs/background_level1.png');
+  game.load.atlasJSONHash('ryuRun', 'ryu.json', 'ryu.png')
   Ryu.preload();
 
 };
