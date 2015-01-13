@@ -59,6 +59,7 @@ Ryu.update = function() {
     ryu.animations.play('run');
   }
   else {
+    ryu.body.velocity.x = 0;
     ryu.animations.stop();
     ryu.frame = 0;
   }
