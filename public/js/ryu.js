@@ -142,7 +142,6 @@ if (playerKeys.h.isDown) {
   if (enemyCollision === true)
   {
     ryu.health--;
-    console.log("Ryu and enemy collision");
     console.log(ryu.health);
   }
 
