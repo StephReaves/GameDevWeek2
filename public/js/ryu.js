@@ -35,6 +35,13 @@ Ryu.create = function() {
   Hadokens.createMultiple(50, 'blueHadoken');
   Hadokens.setAll('checkWorldBounds', true);
   Hadokens.setAll('outOfBoundsKill', true);
+  redHadokens = game.add.group();
+  redHadokens.enableBody = true;
+  redHadokens.physicsBodyType = Phaser.Physics.ARCADE;
+  redHadokens.createMultiple(10, 'redHadoken');
+  redHadokens.setAll('checkWorldBounds', true);
+  redHadokens.setAll('outOfBoundsKill', true);
+
 
   ryu.body.gravity.y = 250;
 
