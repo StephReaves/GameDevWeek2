@@ -98,12 +98,12 @@ Ryu.update = function() {
     if (playerKeys.a.isDown) {
       // ryuMove.animations.play('hadoken!');
       attack.play();
-      this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
+      this.chuckHadoken(Hadokens, 'left');
     }
     else{
       // ryuMove.animations.play('hadoken!');
       attack.play();
-      this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
+      this.chuckHadoken(Hadokens, 'right');
     }
   }, this);
 
@@ -115,20 +115,20 @@ Ryu.update = function() {
         if (playerKeys.a.isDown) {
           attack.play();
           // ryuMove.animations.play('hadoken!');
-          this.chuckHadoken(Hadokens, 'redHadoken', 'left');
+          this.chuckHadoken(redHadokens, 'left');
         }
         else{
           // ryuMove.animations.play('hadoken!');
           attack.play();
-          this.chuckHadoken(Hadokens, 'redHadoken', 'right');
+          this.chuckHadoken(redHadokens, 'right');
         }
       }
     }, this);
   }
 };
 
-Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
-  var hadoken = hadokens.getFirstExists(false);
+Ryu.chuckHadoken = function(hadokensGroup, direction) {
+  var hadoken = hadokensGroup.getFirstExists(false);
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
@@ -136,10 +136,10 @@ Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
   else{
     hadoken.body.velocity.x = 400;
   }
-  if (game.time.now > nextFire && hadokens.countDead() > 0)
+  if (game.time.now > nextFire && hadokensGroup.countDead() > 0)
     {
         nextFire = game.time.now + fireRate;
-        var hadoken = hadokens.getFirstDead();
+        var hadoken = hadokensGroup.getFirstDead();
         hadoken.reset(sprite.x - 8, sprite.y - 8);
     }
 };
