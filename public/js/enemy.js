@@ -15,7 +15,7 @@ Enemy.create = function() {
 	enemy.setAll('scale.x',0.5);
 	enemy.setAll('scale.y',0.5);
 	enemy.setAll('checkWorldBounds',true);
-	enemy.health = 2;
+	enemy.health = 5;
 
 	// JIC: Need to figure out how to know each enemy object to kill off the specific ones that get hit instead of killing whole group
 	this.launchEnemy();
@@ -26,7 +26,7 @@ Enemy.update = function() {
 	// game.physics.arcade.collide(enemy, platforms)
 
 	// If hadoken touches enemy, reduce health
-  game.physics.arcade.collide(enemy, Hadokens, this.hadokenCollision);
+  game.physics.arcade.overlap(enemy, hadoken, this.hadokenCollision);
 
 	if (enemy.health <= 0)
 	{
@@ -38,8 +38,7 @@ Enemy.update = function() {
 
 Enemy.hadokenCollision = function() {
 	enemy.health--;
-	// Will need to kill hadokens as they hit
-	// Ryu.Hadokens.kill();
+	hadoken.kill();
 	console.log(enemy.health);
 }
 
@@ -47,9 +46,8 @@ Enemy.launchEnemy = function() {
 
 	var guard = enemy.getFirstExists(false);
 	if (guard) {
-	    guard.reset(100, game.world.height - 180);
-	    guard.body.velocity.x = 1
-	    guard.health = 2;
+	    guard.reset(Math.random(300,700)*1000, game.world.height - 180);
+	    guard.body.velocity.x = -30;
 	    game.physics.arcade.enable(guard);
 	    guard.body.allowGravity = true;
 	    guard.body.collideWorldBounds = true;

@@ -28,7 +28,7 @@ Ryu.create = function() {
   ryu.body.allowGravity = true;
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
-  ryu.health = 10;
+  ryu.health = 100;
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -125,13 +125,13 @@ if (playerKeys.h.isDown) {
   }
 
   // If Ryu touches enemy, reduce health
-  // enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
+  enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
 
-  // if (ryu.health <= 0)
-  // {
-  //   ryu.kill();
-  //   // Call method to end or restart game
-  // }
+  if (ryu.health <= 0)
+  {
+    ryu.kill();
+    // Call method to end or restart game
+  }
 };
 Ryu.enemyCollision = function () {
   ryu.health--;
