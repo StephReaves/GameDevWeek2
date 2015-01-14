@@ -1,12 +1,14 @@
 var Ryu = {};
 var jumpTimer = 0;
 var ryu;
-
+var dmg;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
   game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
+  game.load.audio('damage', ['assets/audio/damage.wav']);
+
 };
 
 Ryu.create = function() {
@@ -23,6 +25,8 @@ Ryu.create = function() {
   ryu.body.gravity.y = 250;
 
   ryu.animations.add('run', [1,2,3,4], 7, true);
+  dmg= game.add.audio('damage');
+
 
 // Currently this animation for doing a hadoken is not working
   // ryu.animations.add('hadoken!', [5,6], 7, true);
