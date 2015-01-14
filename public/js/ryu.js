@@ -32,7 +32,6 @@ Ryu.create = function() {
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
   Hadokens.physicsBodyType = Phaser.Physics.ARCADE;
-  Hadokens.createMultiple(50, 'bullet');
   Hadokens.setAll('checkWorldBounds', true);
   Hadokens.setAll('outOfBoundsKill', true);
 
