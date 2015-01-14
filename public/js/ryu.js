@@ -32,6 +32,7 @@ Ryu.create = function() {
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
   Hadokens.physicsBodyType = Phaser.Physics.ARCADE;
+  Hadokens.createMultiple(50, 'blueHadoken');
   Hadokens.setAll('checkWorldBounds', true);
   Hadokens.setAll('outOfBoundsKill', true);
 
@@ -120,7 +121,8 @@ Ryu.update = function() {
 };
 
 Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
-  var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
+  var hadoken = hadokens.getFirstExists(false);
+  hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
   }
