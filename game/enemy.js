@@ -24,42 +24,47 @@ Enemy.create = function() {
 	enemy.setAll('checkWorldBounds',true);
 	enemy.health = 2;
 
-	launchEnemy();
+	this.launchEnemy();
 };
 
 Enemy.update = function() {
-	enemy.x += 2;
-	enemy.scale.x = 1;
+	// enemy.x += 2;
+	// enemy.scale.x = 1;
 
 	game.physics.arcade.collide(enemy, platforms)
 
 	// If hadoken touches enemy, reduce health
-  hadokenCollision = game.physics.arcade.collide(guard, Hadokens);
+  game.physics.arcade.collide(enemy, Hadokens, this.hadokenCollision);
   // console.log(hadoken);
-  if (hadokenCollision === true)
-  {
-    console.log("hadokenCollision");
-    enemy.health--;
-    console.log(enemy.health);
-  }
+  // if (hadokenCollision === true)
+  // {
+  //   console.log("hadokenCollision");
+  //   enemy.health--;
+  //   // JIC: Need to destroy the colliding hadokens
+  //   console.log(enemy.health);
+  // }
 
-	if (guard.health < 0)
+	if (enemy.health <= 0)
 	{
-		guard.destroy();
-		console.log("guard destroyed");
+		enemy.destroy();
+		console.log("enemy destroyed");
 	}
 
 };
 
-function launchEnemy() {
+Enemy.hadokenCollision = function() {
+	enemy.health--;
+	console.log(enemy.health);
+}
+
+Enemy.launchEnemy = function() {
 
 	var guard = enemy.getFirstExists(false);
 	if (guard) {
-	    guard.reset(50, 500);
+	    guard.reset(600, 500);
 	    guard.body.velocity.x = 1
 	    guard.health = 2;
 	}
-
 }
 
 
