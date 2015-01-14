@@ -28,6 +28,7 @@ Ryu.create = function() {
   ryu.body.allowGravity = true;
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
+  ryu.health = 10;
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -56,7 +57,6 @@ Ryu.create = function() {
 // Currently this animation for doing a hadoken is not working
   // ryu.animations.add('hadoken!', [5,6], 7, true);
   // ryu.animations.play('hadoken!');
-
 
   playerKeys = {
     //movement
@@ -127,7 +127,7 @@ if (playerKeys.h.isDown) {
   }
 
   // If Ryu touches enemy, reduce health
-  enemyCollision = game.physics.arcade.collide(ryu, enemy, this.enemyCollision);
+  enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
 
   if (ryu.health <= 0)
   {
@@ -143,6 +143,7 @@ Ryu.chuckHadoken = function(hadokensGroup, direction) {
 =======
 Ryu.enemyCollision = function () {
   ryu.health--;
+  console.log(ryu.health--);
 }
 
 Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
