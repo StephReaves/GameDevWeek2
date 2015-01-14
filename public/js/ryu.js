@@ -125,13 +125,13 @@ if (playerKeys.h.isDown) {
   }
 
   // If Ryu touches enemy, reduce health
-  enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
+  // enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
 
-  if (ryu.health <= 0)
-  {
-    ryu.kill();
-    // Call method to end or restart game
-  }
+  // if (ryu.health <= 0)
+  // {
+  //   ryu.kill();
+  //   // Call method to end or restart game
+  // }
 };
 Ryu.enemyCollision = function () {
   ryu.health--;
