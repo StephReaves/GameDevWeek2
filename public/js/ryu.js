@@ -1,7 +1,7 @@
 var Ryu = {};
 var jumpTimer = 0;
 var ryu;
-var shoot;
+var attack;
 var music;
 var die;
 var jump;
@@ -10,7 +10,7 @@ Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
   game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
-  game.load.audio('shoot', ['assets/audio/damage.wav']);
+  game.load.audio('attack', ['assets/audio/damage.wav']);
   game.load.audio('theme', ['assets/audio/dp_pacmania_stage2.wav']);
   game.load.audio('die', ['assets/audio/damage.wav']);
   game.load.audio('jump', ['assets/audio/Jump-SoundBible.com.mp3']);
@@ -31,7 +31,7 @@ Ryu.create = function() {
   ryu.body.gravity.y = 250;
 
   ryu.animations.add('run', [1,2,3,4], 7, true);
-  shoot= game.add.audio('shoot');
+  attack= game.add.audio('attack');
   music = game.add.audio('theme',1,true);
   jump = game.add.audio('jump');
   music.play('',0,1,true);
@@ -81,12 +81,12 @@ Ryu.update = function() {
   playerKeys.h.onDown.add(function(key){
     if (playerKeys.a.isDown) {
       // ryuMove.animations.play('hadoken!');
-      shoot.play();
+      attack.play();
       this.chuckHadoken(Hadokens, 'blueHadoken', 'left');
     }
     else{
       // ryuMove.animations.play('hadoken!');
-      shoot.play();
+      attack.play();
       this.chuckHadoken(Hadokens, 'blueHadoken', 'right');
     }
   }, this);
@@ -97,13 +97,13 @@ Ryu.update = function() {
       if (duration >= 500) {
         duration = 0;
         if (playerKeys.a.isDown) {
-          shoot.play();
+          attack.play();
           // ryuMove.animations.play('hadoken!');
           this.chuckHadoken(Hadokens, 'redHadoken', 'left');
         }
         else{
           // ryuMove.animations.play('hadoken!');
-          shoot.play();
+          attack.play();
           this.chuckHadoken(Hadokens, 'redHadoken', 'right');
         }
       }
