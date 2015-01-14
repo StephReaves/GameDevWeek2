@@ -22,7 +22,6 @@ Ryu.preload = function() {
 };
 
 Ryu.create = function() {
-<<<<<<< HEAD:public/js/ryu.js
   ryu = game.add.sprite(32, game.world.height - 180,'ryuRun');
   game.physics.arcade.enable(ryu);
   ryu.anchor.setTo(.5, .5);
@@ -58,17 +57,7 @@ Ryu.create = function() {
   // ryu.animations.add('hadoken!', [5,6], 7, true);
   // ryu.animations.play('hadoken!');
 
-=======
-  console.log("Ryu.create()'s this: ")
-  console.log(this);
-  ryu = game.add.image(game.world.centerX, 520,'ryuNormal');
-  Hadokens = game.add.group();
-  Hadokens.enableBody = true;
-  game.physics.enable('ryuNormal', Phaser.Physics.ARCADE);
-  ryu.health = 10;
-  ryu.anchor.setTo(.5, .5);
-  // ryu.body.collideWorldBounds = true;
->>>>>>> Modify ryu and enemy to use phaser health instead:game/ryu.js
+
   playerKeys = {
     //movement
     w: game.input.keyboard.addKey(87),
@@ -138,13 +127,7 @@ if (playerKeys.h.isDown) {
   }
 
   // If Ryu touches enemy, reduce health
-  enemyCollision = game.physics.arcade.collide(ryu, enemy);
-  console.log(ryu.health);
-  if (enemyCollision === true)
-  {
-    ryu.health--;
-    console.log(ryu.health);
-  }
+  enemyCollision = game.physics.arcade.collide(ryu, enemy, this.enemyCollision);
 
   if (ryu.health <= 0)
   {
@@ -153,9 +136,18 @@ if (playerKeys.h.isDown) {
   }
 };
 
+<<<<<<< HEAD
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
   var hadoken = hadokensGroup.getFirstExists(false);
   hadoken.reset(ryu.x, ryu.y);
+=======
+Ryu.enemyCollision = function () {
+  ryu.health--;
+}
+
+Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
+  var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
+>>>>>>> Add Ryu enemy collision method
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
   }
