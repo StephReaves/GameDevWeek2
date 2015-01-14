@@ -1,9 +1,11 @@
 var State = {};
+var music={};
 
 State.preload = function(){
   game.load.tilemap('level1', 'assets/levels/level_one.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('background', 'assets/imgs/background_level1.png');
   game.load.atlasJSONHash('ryuRun', 'assets/ryu/ryu.json', 'assets/ryu/ryu.png');
+  game.load.audio('theme', 'assets/audio/dp_pacmania_stage2.mp3');
   Ryu.preload();
 
 };
