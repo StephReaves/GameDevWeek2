@@ -5,7 +5,6 @@ State.preload = function(){
   game.load.tilemap('level1', 'assets/levels/level_one.json', null, Phaser.Tilemap.TILED_JSON);
   game.load.image('background', 'assets/imgs/background_level1.png');
   game.load.atlasJSONHash('ryuRun', 'assets/ryu/ryu.json', 'assets/ryu/ryu.png');
-  Platform.preload();
   Ryu.preload();
   Enemy.preload();
 
@@ -14,7 +13,6 @@ State.create = function(){
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.add.tileSprite(0, 0, 4060, 224, 'background');
   game.world.setBounds(0, 0, 4060, 224);
-  Platform.create();
   Ryu.create();
   Enemy.create();
   map = game.add.tilemap('level1');
