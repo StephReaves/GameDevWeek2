@@ -5,14 +5,6 @@ Enemy.preload = function() {
 };
 
 Enemy.create = function() {
-	// enemy = game.add.image(120, 520,'enemy');
-	// enemy.enableBody = true;
-	// enemy.physicsBodyType = Phaser.Physics.ARCADE;
-	// // Enemy physical attributes
-	// enemy.health = 2;
-	// enemy.anchor.setTo(.5,.5);
-	// enemy.animations.add('left',[0,1],10,true);
-	// enemy.animations.add('right',[1,2],10,true);
 	enemy = game.add.group();
 	enemy.enableBody = true;
 	enemy.physicsBodyType = Phaser.Physics.ARCADE;
@@ -24,25 +16,16 @@ Enemy.create = function() {
 	enemy.setAll('checkWorldBounds',true);
 	enemy.health = 2;
 
+	// JIC: Need to figure out how to know each enemy object to kill off the specific ones that get hit instead of killing whole group
 	this.launchEnemy();
 };
 
 Enemy.update = function() {
-	// enemy.x += 2;
-	// enemy.scale.x = 1;
 
 	game.physics.arcade.collide(enemy, platforms)
 
 	// If hadoken touches enemy, reduce health
   game.physics.arcade.collide(enemy, Hadokens, this.hadokenCollision);
-  // console.log(hadoken);
-  // if (hadokenCollision === true)
-  // {
-  //   console.log("hadokenCollision");
-  //   enemy.health--;
-  //   // JIC: Need to destroy the colliding hadokens
-  //   console.log(enemy.health);
-  // }
 
 	if (enemy.health <= 0)
 	{
@@ -54,6 +37,8 @@ Enemy.update = function() {
 
 Enemy.hadokenCollision = function() {
 	enemy.health--;
+	// Will need to kill hadokens as they hit
+	// Ryu.Hadokens.kill();
 	console.log(enemy.health);
 }
 
@@ -61,7 +46,7 @@ Enemy.launchEnemy = function() {
 
 	var guard = enemy.getFirstExists(false);
 	if (guard) {
-	    guard.reset(600, 500);
+	    guard.reset(600, 520);
 	    guard.body.velocity.x = 1
 	    guard.health = 2;
 	}
