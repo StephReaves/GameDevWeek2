@@ -9,7 +9,7 @@ Enemy.create = function() {
 	enemy = game.add.image(120, 520,'enemy');
 	game.physics.arcade.enable(enemy);
 	// Enemy physical attributes
-	enemy.health = 2
+	enemy.health = 2;
 	enemy.anchor.setTo(.5,.5);
 	enemy.animations.add('left',[0,1],10,true);
 	enemy.animations.add('right',[1,2],10,true);

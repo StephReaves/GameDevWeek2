@@ -65,6 +65,7 @@ Ryu.create = function() {
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
   game.physics.enable('ryuNormal', Phaser.Physics.ARCADE);
+  ryu.health = 10;
   ryu.anchor.setTo(.5, .5);
   // ryu.body.collideWorldBounds = true;
 >>>>>>> Modify ryu and enemy to use phaser health instead:game/ryu.js
