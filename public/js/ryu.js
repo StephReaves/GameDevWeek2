@@ -5,15 +5,17 @@ var attack;
 var music;
 var die;
 var jump;
+var damage;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
   game.load.image('blueHadoken', 'assets/ryu/blue_hadoken.png');
   game.load.image('redHadoken', 'assets/ryu/red_hadoken.png');
-  game.load.audio('attack', ['assets/audio/attack.wav']);
+  game.load.audio('attack', ['assets/audio/attack.mp3']);
   game.load.audio('theme', ['assets/audio/dp_pacmania_stage2.wav']);
   game.load.audio('die', ['assets/audio/death.wav']);
   game.load.audio('jump', ['assets/audio/Jump-SoundBible.com.mp3']);
+  game.load.audio('damage', ['assets/audio/damage.wav']);
 
 };
 
@@ -34,6 +36,7 @@ Ryu.create = function() {
   attack= game.add.audio('attack');
   music = game.add.audio('theme',1,true);
   jump = game.add.audio('jump');
+
   music.play('',0,1,true);
 
 
