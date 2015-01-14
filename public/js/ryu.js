@@ -70,32 +70,32 @@ Ryu.create = function() {
 };
 
 Ryu.update = function() {
-   if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
-    ryu.body.velocity.y = -150;
-    jumpTimer = game.time.now + 750;
-    jump.play();
-  }
-  else if (playerKeys.a.isDown) {
-    ryu.body.velocity.x = -200;
-    ryu.scale.x = -1;
-    ryu.animations.play('run');
-  }
-  else if (playerKeys.s.isDown) {
-    console.log('move down/duck?');
-  }
-  else if (playerKeys.d.isDown) {
-    ryu.body.velocity.x = 200;
-    ryu.scale.x = 1;
-    ryu.animations.play('run');
-  }
-  else {
-    ryu.body.velocity.x = 0;
-    ryu.animations.stop();
-    ryu.frame = 0;
-  }
+ if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
+  ryu.body.velocity.y = -150;
+  jumpTimer = game.time.now + 750;
+  jump.play();
+}
+else if (playerKeys.a.isDown) {
+  ryu.body.velocity.x = -200;
+  ryu.scale.x = -1;
+  ryu.animations.play('run');
+}
+else if (playerKeys.s.isDown) {
+  console.log('move down/duck?');
+}
+else if (playerKeys.d.isDown) {
+  ryu.body.velocity.x = 200;
+  ryu.scale.x = 1;
+  ryu.animations.play('run');
+}
+else {
+  ryu.body.velocity.x = 0;
+  ryu.animations.stop();
+  ryu.frame = 0;
+}
 // hadoken functionality is working, but the animation is not yet.
-  playerKeys.h.onDown.add(function(key){
-    if (playerKeys.a.isDown) {
+playerKeys.h.onDown.add(function(key){
+  if (playerKeys.a.isDown) {
       // ryuMove.animations.play('hadoken!');
       attack.play();
       this.chuckHadoken(Hadokens, 'left');
@@ -107,13 +107,11 @@ Ryu.update = function() {
     }
   }, this);
 
-  if (playerKeys.h.isDown) {
-    var duration = playerKeys.h.duration;
-    playerKeys.h.onUp.add(function(key){
-      if (duration >= 500) {
-        duration = 0;
-        if (playerKeys.a.isDown) {
-          attack.play();
+if (playerKeys.h.isDown) {
+  playerKeys.h.onUp.add(function(key){
+    if (key.duration >= 500) {
+      if (playerKeys.a.isDown) {
+        attack.play();
           // ryuMove.animations.play('hadoken!');
           this.chuckHadoken(redHadokens, 'left');
         }
@@ -124,7 +122,7 @@ Ryu.update = function() {
         }
       }
     }, this);
-  }
+}
 };
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
@@ -137,11 +135,11 @@ Ryu.chuckHadoken = function(hadokensGroup, direction) {
     hadoken.body.velocity.x = 400;
   }
   if (game.time.now > nextFire && hadokensGroup.countDead() > 0)
-    {
-        nextFire = game.time.now + fireRate;
-        var hadoken = hadokensGroup.getFirstDead();
-        hadoken.reset(sprite.x - 8, sprite.y - 8);
-    }
+  {
+    nextFire = game.time.now + fireRate;
+    var hadoken = hadokensGroup.getFirstDead();
+    hadoken.reset(sprite.x - 8, sprite.y - 8);
+  }
 };
 
 Ryu.render = function() {
