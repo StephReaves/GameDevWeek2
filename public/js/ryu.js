@@ -137,17 +137,18 @@ if (playerKeys.h.isDown) {
   }
 
   // If Ryu touches enemy, reduce health
-  enemyCollision = game.physics.arcade.collide(hadoken, enemy);
+  enemyCollision = game.physics.arcade.collide(ryu, enemy);
+  console.log(ryu.health);
   if (enemyCollision === true)
   {
-    ryuHealth--;
+    ryu.health--;
     console.log("Ryu and enemy collision");
-    console.log(ryu.ryuHealth);
+    console.log(ryu.health);
   }
 
-  if (ryuHealth < 0)
+  if (ryu.health <= 0)
   {
-    ryu.destroy();
+    ryu.kill();
     // Call method to end or restart game
   }
 };
