@@ -6,6 +6,8 @@ var music;
 var die;
 var jump;
 var damage;
+var fireRate = 100;
+var nextFire = 0;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
@@ -29,6 +31,10 @@ Ryu.create = function() {
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
+  Hadokens.physicsBodyType = Phaser.Physics.ARCADE;
+  Hadokens.createMultiple(50, 'bullet');
+  Hadokens.setAll('checkWorldBounds', true);
+  Hadokens.setAll('outOfBoundsKill', true);
 
   ryu.body.gravity.y = 250;
 
@@ -122,6 +128,12 @@ Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
   else{
     hadoken.body.velocity.x = 400;
   }
+  if (game.time.now > nextFire && hadokens.countDead() > 0)
+    {
+        nextFire = game.time.now + fireRate;
+        var hadoken = hadokens.getFirstDead();
+        hadoken.reset(sprite.x - 8, sprite.y - 8);
+    }
 };
 
 Ryu.render = function() {
