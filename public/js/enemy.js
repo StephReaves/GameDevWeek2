@@ -1,7 +1,8 @@
 var Enemy = {};
+var enemy;
 
 Enemy.preload = function() {
-	game.load.image('enemy', 'assets/enemy/enemy.png');
+	game.load.image('enemy', 'assets/imgs/enemy.png');
 };
 
 Enemy.create = function() {
@@ -12,7 +13,7 @@ Enemy.create = function() {
 	enemy.setAll('anchor.x',0.5);
 	enemy.setAll('anchor.y',0.5);
 	enemy.setAll('scale.x',0.5);
-	enemy.setAll('scale.x',0.5);
+	enemy.setAll('scale.y',0.5);
 	enemy.setAll('checkWorldBounds',true);
 	enemy.health = 2;
 
@@ -22,7 +23,7 @@ Enemy.create = function() {
 
 Enemy.update = function() {
 
-	game.physics.arcade.collide(enemy, platforms)
+	// game.physics.arcade.collide(enemy, platforms)
 
 	// If hadoken touches enemy, reduce health
   game.physics.arcade.collide(enemy, Hadokens, this.hadokenCollision);
@@ -46,9 +47,13 @@ Enemy.launchEnemy = function() {
 
 	var guard = enemy.getFirstExists(false);
 	if (guard) {
-	    guard.reset(600, 520);
+	    guard.reset(100, game.world.height - 180);
 	    guard.body.velocity.x = 1
 	    guard.health = 2;
+	    game.physics.arcade.enable(guard);
+	    guard.body.allowGravity = true;
+	    guard.body.collideWorldBounds = true;
+	    guard.body.gravity.y = 250;
 	}
 }
 
