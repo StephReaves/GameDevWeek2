@@ -36,7 +36,7 @@ Ryu.create = function() {
   attack= game.add.audio('attack');
   music = game.add.audio('theme',1,true);
   jump = game.add.audio('jump');
-
+  damage = game.add.audio('damage');
   music.play('',0,1,true);
 
 
