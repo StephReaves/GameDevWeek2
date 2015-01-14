@@ -1,4 +1,5 @@
 var State = {};
+var music;
 
 State.preload = function(){
   game.load.tilemap('level1', 'assets/levels/level_one.json', null, Phaser.Tilemap.TILED_JSON);
@@ -22,6 +23,7 @@ State.create = function(){
   //collision on blockedLayer
   //resizes the game world
   //this.backgroundLayer.resizeWorld();
+
 };
 State.update = function(){
   Ryu.update();
