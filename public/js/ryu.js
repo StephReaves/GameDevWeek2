@@ -4,6 +4,7 @@ var ryu;
 var shoot;
 var music;
 var die;
+var jump;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
@@ -12,7 +13,7 @@ Ryu.preload = function() {
   game.load.audio('shoot', ['assets/audio/damage.wav']);
   game.load.audio('theme', ['assets/audio/dp_pacmania_stage2.wav']);
   game.load.audio('die', ['assets/audio/damage.wav']);
-
+  game.load.audio('jump', ['assets/audio/Jump-SoundBible.com.mp3']);
 
 };
 
@@ -30,8 +31,9 @@ Ryu.create = function() {
   ryu.body.gravity.y = 250;
 
   ryu.animations.add('run', [1,2,3,4], 7, true);
-  shoot= game.add.audio('damage');
+  shoot= game.add.audio('shoot');
   music = game.add.audio('theme',1,true);
+  jump = game.add.audio('jump');
   music.play('',0,1,true);
 
 
@@ -55,6 +57,7 @@ Ryu.update = function() {
    if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
     ryu.body.velocity.y = -150;
     jumpTimer = game.time.now + 750;
+    jump.play();
   }
   else if (playerKeys.a.isDown) {
     ryu.body.velocity.x = -200;
