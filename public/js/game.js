@@ -12,14 +12,15 @@ State.create = function(){
   game.physics.startSystem(Phaser.Physics.ARCADE);
   map = game.add.tilemap('level_one');
   map.addTilesetImage('level_one_tiles');
-  background = map.createLayer('Tile Layer 1');
-  background.resizeWorld();
-
+  backgroundLayer = map.createLayer('Tile Layer 1');
+  backgroundLayer.resizeWorld();
+  collisionLayer = map.createLayer('Tile Layer 2');
+  map.setCollision(23,true,collisionLayer);
   Ryu.create();
-
 };
 State.update = function(){
   Ryu.update();
+  game.physics.arcade.collide(ryu, collisionLayer);
 };
 State.render = function() {
   Ryu.render();
