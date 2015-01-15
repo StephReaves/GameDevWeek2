@@ -29,7 +29,6 @@ Boss.create = function() {
   Boogers.physicsBodyType = Phaser.Physics.ARCADE;
 
   Boogers.createMultiple(50, 'boog');
-
   Boogers.setAll('checkWorldBounds', true);
   Boogers.setAll('outOfBoundsKill', true);
 
@@ -60,6 +59,7 @@ Boss.update = function() {
 
   setInterval(function() {that.fire(Boogers);}, 10000)
 
+
 }
 
 Boss.hadokenCollision = function() {
@@ -79,17 +79,20 @@ Boss.flip = function() {
 Boss.fire = function(Boogers) {
   this.tossBooger(Boogers, Math.round(Math.random())); 
   setTimeout(function() {boss.animations.stop();}, 4000)
+
 }
 
-Boss.tossBoogger = function(boogersGroup, direction) {
-  var booger = boogersGroup.getFirstExists(false);
-  booger.reset(boss.x, boss.y)
+Boss.tossBooger = function(boogersGroup, direction) {
+  boogers = boogersGroup.getFirstExists(false);
+  boogers.reset(boss.x, boss.y)
 
   if (direction === 0) {
-    booger.body.velocity.x = -400;
+    boogers.body.velocity.x = -400;
+    console.log("fire")
   }
   else{
-    booger.body.velocity.x = 400;
+    boogers.body.velocity.x = 400;
+    console.log("fire")
   }
 
 }
