@@ -14,7 +14,7 @@ State.create = function(){
   map.addTilesetImage('level_one_tiles');
   backgroundLayer = map.createLayer('Tile Layer 1');
   backgroundLayer.resizeWorld();
-  map.setCollision(721);
+  map.setCollision([721,815,816,817]);
   Ryu.create();
 };
 State.update = function(){
