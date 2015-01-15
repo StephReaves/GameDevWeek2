@@ -6,6 +6,7 @@ State.preload = function(){
   game.load.image('background', 'assets/imgs/background_level1.png');
   game.load.atlasJSONHash('ryuRun', 'assets/ryu/ryu.json', 'assets/ryu/ryu.png');
   Ryu.preload();
+  Enemy.preload();
 
 };
 State.create = function(){
@@ -13,6 +14,7 @@ State.create = function(){
   game.add.tileSprite(0, 0, 4060, 224, 'background');
   game.world.setBounds(0, 0, 4060, 224);
   Ryu.create();
+  Enemy.create();
   map = game.add.tilemap('level1');
   map.addTilesetImage('background_level1', 'background');
   map.setCollisionBetween(1, 100000, true, 'Collision');
@@ -27,6 +29,7 @@ State.create = function(){
 };
 State.update = function(){
   Ryu.update();
+  Enemy.update();
 };
 State.render = function() {
   Ryu.render();
