@@ -8,7 +8,9 @@ var die;
 
 Boss.preload = function() {
   game.load.spritesheet('bossWalk', 'assets/boss/walk_mbison.png', 41.5, 50);
+
   game.load.image('boog', 'assets/boss/attack_mbison.png', 500, 100);
+
 };
 
 Boss.create = function() {
