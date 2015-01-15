@@ -12,7 +12,9 @@ Boss.preload = function() {
 };
 
 Boss.create = function() {
+
   boss = game.add.sprite(330, game.world.height - 180,'bossWalk');
+
   boss.enableBody = true;		
   game.physics.arcade.enable(boss);
   boss.body.allowGravity = true;
@@ -37,10 +39,12 @@ Boss.create = function() {
   boss.anchor.setTo(0.5, 0.5);
   boss.scale.set(1.0, 1.0);
 
+
 };
 
 Boss.update = function() {
   game.physics.arcade.collide(boss, Hadokens, this.hadokenCollision);
+
   var that = this;
   if (game.time.now > bossTimer) {
       setInterval(function() {that.flip()}, 3000);
@@ -86,6 +90,7 @@ Boss.tossBooger = function(boogersGroup, direction) {
   }
 
 }
+
 
 
 
