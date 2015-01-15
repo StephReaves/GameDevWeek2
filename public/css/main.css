@@ -1,0 +1,10 @@
+body{
+    background-image: url("../assets/imgs/logo/phegaman.png");
+    background-repeat: repeat-none;
+}
+
+canvas{
+	margin: auto;
+	position: relative;
+	margin-top: 15%;
+}
