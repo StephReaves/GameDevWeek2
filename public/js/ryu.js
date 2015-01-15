@@ -144,11 +144,13 @@ Ryu.enemyCollision = function () {
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
   hadoken = hadokensGroup.getFirstExists(false);
   hadoken.reset(ryu.x, ryu.y);
-  if (direction === 'left') {
+  if (direction === 'left' || ryu.scale.x == -1) {
     hadoken.body.velocity.x = -400;
+    hadoken.scale.x = -1;
   }
   else{
     hadoken.body.velocity.x = 400;
+    hadoken.scale.x = 1;
   }
   if (game.time.now > nextFire && hadokensGroup.countDead() > 0)
   {
