@@ -143,11 +143,8 @@ Ryu.enemyCollision = function () {
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
   hadoken = hadokensGroup.getFirstExists(false);
-  if (hadoken.key === 'redHadoken') {
-    hadoken.damage = 20;
-  } else{
-    hadoken.damage = 10;
-  }
+  // sets damage
+  this.setHadokenDamage(hadoken);
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
@@ -163,6 +160,17 @@ Ryu.chuckHadoken = function(hadokensGroup, direction) {
     hadoken = hadokensGroup.getFirstDead();
     hadoken.reset(sprite.x - 8, sprite.y - 8);
   }
+};
+
+Ryu.setHadokenDamage = function(hadoken, redDamage, blueDamage){
+  redDamage = redDamage || 20;
+  blueDamage = blueDamage || 10;
+  if (hadoken.key === 'redHadoken') {
+    hadoken.damage = redDamage;
+  } else{
+    hadoken.damage = blueDamage;
+  }
+  return hadoken;
 };
 
 Ryu.render = function() {
