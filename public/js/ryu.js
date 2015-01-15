@@ -137,18 +137,14 @@ if (playerKeys.h.isDown) {
   }
 };
 
-Ryu.chuckHadoken = function(hadokensGroup, direction) {
-  var hadoken = hadokensGroup.getFirstExists(false);
-  hadoken.reset(ryu.x, ryu.y);
-
 Ryu.enemyCollision = function () {
   ryu.health--;
   console.log(ryu.health--);
 }
 
-Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
-  var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
-  hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
+Ryu.chuckHadoken = function(hadokensGroup, direction) {
+  var hadoken = hadokensGroup.getFirstExists(false);
+  hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
   }
