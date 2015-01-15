@@ -14,13 +14,12 @@ State.create = function(){
   map.addTilesetImage('level_one_tiles');
   backgroundLayer = map.createLayer('Tile Layer 1');
   backgroundLayer.resizeWorld();
-  collisionLayer = map.createLayer('Tile Layer 2');
-  map.setCollision(23,true,collisionLayer);
+  map.setCollision(721);
   Ryu.create();
 };
 State.update = function(){
   Ryu.update();
-  game.physics.arcade.collide(ryu, collisionLayer);
+  game.physics.arcade.collide(ryu, backgroundLayer);
 };
 State.render = function() {
   Ryu.render();
