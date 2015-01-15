@@ -68,6 +68,7 @@ Boss.hadokenCollision = function() {
 }
 
 Boss.flip = function() {
+
   arr = [200, -200]
   boss.body.velocity.x = arr[Math.round(Math.random())];
   boss.animations.play('run')
