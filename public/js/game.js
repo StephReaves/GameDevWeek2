@@ -18,8 +18,8 @@ State.create = function(){
   Ryu.create();
 };
 State.update = function(){
-  Ryu.update();
   game.physics.arcade.collide(ryu, backgroundLayer);
+  Ryu.update();
 };
 State.render = function() {
   Ryu.render();
