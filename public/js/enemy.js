@@ -1,5 +1,6 @@
 var Enemy = {};
 var enemy;
+var guard;
 
 Enemy.preload = function() {
 	game.load.image('enemy', 'assets/imgs/enemy.png');
@@ -9,7 +10,7 @@ Enemy.create = function() {
 	enemy = game.add.group();
 	enemy.enableBody = true;
 	enemy.physicsBodyType = Phaser.Physics.ARCADE;
-	enemy.createMultiple(5, 'enemy');
+	enemy.createMultiple(10, 'enemy');
 	enemy.setAll('anchor.x',0.5);
 	enemy.setAll('anchor.y',0.5);
 	enemy.setAll('scale.x',0.5);
@@ -17,8 +18,8 @@ Enemy.create = function() {
 	enemy.setAll('checkWorldBounds',true);
 	enemy.health = 5;
 
-	// JIC: Need to figure out how to know each enemy object to kill off the specific ones that get hit instead of killing whole group
-	this.launchEnemy();
+	// Refactor to have a clean way of populating enemies
+	this.launchEnemy(ryu.x+500);
 };
 
 Enemy.update = function() {
@@ -26,32 +27,33 @@ Enemy.update = function() {
 	// game.physics.arcade.collide(enemy, platforms)
 
 	// If hadoken touches enemy, reduce health
-  game.physics.arcade.overlap(enemy, hadoken, this.hadokenCollision);
+  game.physics.arcade.overlap(guard, hadoken, this.hadokenCollision);
 
-	if (enemy.health <= 0)
+	if (guard.health <= 0)
 	{
-		enemy.destroy();
-		console.log("enemy destroyed");
+		guard.destroy();
+		this.launchEnemy(ryu.x+500);	
 	}
 
 };
 
 Enemy.hadokenCollision = function() {
-	enemy.health--;
+	guard.health--;
 	hadoken.kill();
-	console.log(enemy.health);
+	console.log(guard.health);
 }
 
-Enemy.launchEnemy = function() {
+Enemy.launchEnemy = function(position) {
 
-	var guard = enemy.getFirstExists(false);
+	guard = enemy.getFirstExists(false);
 	if (guard) {
-	    guard.reset(Math.random(300,700)*1000, game.world.height - 180);
-	    guard.body.velocity.x = -30;
-	    game.physics.arcade.enable(guard);
-	    guard.body.allowGravity = true;
-	    guard.body.collideWorldBounds = true;
-	    guard.body.gravity.y = 250;
+    guard.reset(position, game.world.height - 180);
+    game.physics.arcade.enable(guard);
+    guard.body.velocity.x = -30;
+    guard.body.allowGravity = true;
+    guard.body.collideWorldBounds = true;
+    guard.body.gravity.y = 250;
+    guard.health = 5;
 	}
 }
 
