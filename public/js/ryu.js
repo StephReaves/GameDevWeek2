@@ -19,7 +19,6 @@ Ryu.preload = function() {
   game.load.audio('die', ['assets/audio/death.wav']);
   game.load.audio('jump', ['assets/audio/Jump-SoundBible.com.mp3']);
   game.load.audio('damage', ['assets/audio/damage.wav']);
-
 };
 
 Ryu.create = function() {
@@ -143,7 +142,7 @@ Ryu.enemyCollision = function () {
 }
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
-  var hadoken = hadokensGroup.getFirstExists(false);
+  hadoken = hadokensGroup.getFirstExists(false);
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
@@ -154,7 +153,7 @@ Ryu.chuckHadoken = function(hadokensGroup, direction) {
   if (game.time.now > nextFire && hadokensGroup.countDead() > 0)
   {
     nextFire = game.time.now + fireRate;
-    var hadoken = hadokensGroup.getFirstDead();
+    hadoken = hadokensGroup.getFirstDead();
     hadoken.reset(sprite.x - 8, sprite.y - 8);
   }
 };

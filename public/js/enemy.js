@@ -24,10 +24,9 @@ Enemy.create = function() {
 
 Enemy.update = function() {
 
-	// game.physics.arcade.collide(enemy, platforms)
-
 	// If hadoken touches enemy, reduce health
-  game.physics.arcade.overlap(guard, hadoken, this.hadokenCollision);
+  game.physics.arcade.overlap(guard, Hadokens, this.hadokenCollision);
+  game.physics.arcade.overlap(guard, redHadokens, this.hadokenCollision);
 
 	if (guard.health <= 0)
 	{
@@ -53,7 +52,7 @@ Enemy.launchEnemy = function(position) {
     guard.body.allowGravity = true;
     guard.body.collideWorldBounds = true;
     guard.body.gravity.y = 250;
-    guard.health = 5;
+    guard.health = 100;
 	}
 }
 
