@@ -59,7 +59,6 @@ Boss.update = function() {
 
   setInterval(function() {that.fire(Boogers);}, 10000)
 
-
 }
 
 Boss.hadokenCollision = function() {
