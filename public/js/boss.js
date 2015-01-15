@@ -8,7 +8,6 @@ var die;
 
 Boss.preload = function() {
   game.load.spritesheet('bossWalk', 'assets/boss/walk_mbison.png', 41.5, 50);
-
   game.load.image('boog', 'assets/boss/attack_mbison.png', 500, 100);
 
 };
@@ -79,6 +78,20 @@ Boss.flip = function() {
 
 Boss.fire = function(Boogers) {
   this.tossBooger(Boogers, Math.round(Math.random())); 
+  setTimeout(function() {boss.animations.stop();}, 4000)
+}
+
+Boss.tossBoogger = function(boogersGroup, direction) {
+  var booger = boogersGroup.getFirstExists(false);
+  booger.reset(boss.x, boss.y)
+
+  if (direction === 0) {
+    booger.body.velocity.x = -400;
+  }
+  else{
+    booger.body.velocity.x = 400;
+  }
+
 }
 
 Boss.tossBooger = function(boogersGroup, direction) {
