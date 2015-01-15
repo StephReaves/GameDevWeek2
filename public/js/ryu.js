@@ -8,6 +8,9 @@ var jump;
 var damage;
 var fireRate = 100;
 var nextFire = 0;
+var hadoken;
+var Hadokens;
+var redHadokens;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
@@ -127,19 +130,19 @@ if (playerKeys.h.isDown) {
   // If Ryu touches enemy, reduce health
   enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
 
-  if (ryu.health <= 0)
-  {
+  if (ryu.health <= 0){
     ryu.kill();
     // Call method to end or restart game
   }
 };
+
 Ryu.enemyCollision = function () {
   ryu.health--;
   console.log(ryu.health--);
-}
+};
 
-Ryu.chuckHadoken = function(hadokens, hadokenImage, direction) {
-  var hadoken = hadokens.create(ryu.x, ryu.y, hadokenImage);
+Ryu.chuckHadoken = function(hadokensGroup, direction) {
+  var hadoken = hadokensGroup.getFirstExists(false);
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
