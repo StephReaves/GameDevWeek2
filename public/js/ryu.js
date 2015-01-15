@@ -8,6 +8,7 @@ var jump;
 var damage;
 var fireRate = 100;
 var nextFire = 0;
+var hadoken;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
@@ -18,7 +19,6 @@ Ryu.preload = function() {
   game.load.audio('die', ['assets/audio/death.wav']);
   game.load.audio('jump', ['assets/audio/Jump-SoundBible.com.mp3']);
   game.load.audio('damage', ['assets/audio/damage.wav']);
-
 };
 
 Ryu.create = function() {
@@ -28,6 +28,7 @@ Ryu.create = function() {
   ryu.body.allowGravity = true;
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
+  ryu.health = 100;
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -70,7 +71,7 @@ Ryu.create = function() {
 };
 
 Ryu.update = function() {
- if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
+if (playerKeys.w.isDown && ryu.body.onFloor() && game.time.now > jumpTimer) {
   ryu.body.velocity.y = -150;
   jumpTimer = game.time.now + 750;
   jump.play();
@@ -93,9 +94,10 @@ else {
   ryu.animations.stop();
   ryu.frame = 0;
 }
+
 // hadoken functionality is working, but the animation is not yet.
-playerKeys.h.onDown.add(function(key){
-  if (playerKeys.a.isDown) {
+playerKeys.h.onDown.add(function(key) {
+if (playerKeys.a.isDown) {
       // ryuMove.animations.play('hadoken!');
       attack.play();
       this.chuckHadoken(Hadokens, 'left');
@@ -122,22 +124,38 @@ if (playerKeys.h.isDown) {
         }
       }
     }, this);
-}
+  }
+
+  // If Ryu touches enemy, reduce health
+  enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
+
+  if (ryu.health <= 0)
+  {
+    ryu.kill();
+    // Call method to end or restart game
+  }
 };
 
+Ryu.enemyCollision = function () {
+  ryu.health--;
+  console.log(ryu.health--);
+}
+
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
-  var hadoken = hadokensGroup.getFirstExists(false);
+  hadoken = hadokensGroup.getFirstExists(false);
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
+    hadoken.scale.x = -1;
   }
   else{
     hadoken.body.velocity.x = 400;
+    hadoken.scale.x = 1;
   }
   if (game.time.now > nextFire && hadokensGroup.countDead() > 0)
   {
     nextFire = game.time.now + fireRate;
-    var hadoken = hadokensGroup.getFirstDead();
+    hadoken = hadokensGroup.getFirstDead();
     hadoken.reset(sprite.x - 8, sprite.y - 8);
   }
 };
