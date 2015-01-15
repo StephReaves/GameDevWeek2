@@ -146,9 +146,11 @@ Ryu.chuckHadoken = function(hadokensGroup, direction) {
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;
+    hadoken.scale.x = -1;
   }
   else{
     hadoken.body.velocity.x = 400;
+    hadoken.scale.x = 1;
   }
   if (game.time.now > nextFire && hadokensGroup.countDead() > 0)
   {
