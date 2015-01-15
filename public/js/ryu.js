@@ -8,6 +8,9 @@ var jump;
 var damage;
 var fireRate = 100;
 var nextFire = 0;
+var hadoken;
+var Hadokens;
+var redHadokens;
 
 Ryu.preload = function() {
   game.load.spritesheet('ryuRun', 'assets/ryu/ryu_run.png', 25.5, 40);
@@ -28,6 +31,7 @@ Ryu.create = function() {
   ryu.body.allowGravity = true;
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
+  ryu.health = 100;
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -56,7 +60,6 @@ Ryu.create = function() {
 // Currently this animation for doing a hadoken is not working
   // ryu.animations.add('hadoken!', [5,6], 7, true);
   // ryu.animations.play('hadoken!');
-
   playerKeys = {
     //movement
     w: game.input.keyboard.addKey(87),
@@ -122,7 +125,20 @@ if (playerKeys.h.isDown) {
         }
       }
     }, this);
-}
+  }
+
+  // If Ryu touches enemy, reduce health
+  enemyCollision = game.physics.arcade.collide(enemy, ryu, this.enemyCollision);
+
+  if (ryu.health <= 0){
+    ryu.kill();
+    // Call method to end or restart game
+  }
+};
+
+Ryu.enemyCollision = function () {
+  ryu.health--;
+  console.log(ryu.health--);
 };
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
