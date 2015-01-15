@@ -139,10 +139,15 @@ if (playerKeys.h.isDown) {
 Ryu.enemyCollision = function () {
   ryu.health--;
   console.log(ryu.health--);
-}
+};
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
   hadoken = hadokensGroup.getFirstExists(false);
+  if (hadoken.key === 'redHadoken') {
+    hadoken.damage = 20;
+  } else{
+    hadoken.damage = 10;
+  }
   hadoken.reset(ryu.x, ryu.y);
   if (direction === 'left') {
     hadoken.body.velocity.x = -400;

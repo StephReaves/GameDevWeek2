@@ -37,7 +37,7 @@ Enemy.update = function() {
 };
 
 Enemy.hadokenCollision = function(guard, hadoken) {
-	guard.health--;
+	guard.health -= hadoken.damage;
 	hadoken.kill();
 	console.log(guard.health);
 };
