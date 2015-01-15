@@ -67,11 +67,15 @@ Boss.hadokenCollision = function() {
 }
 
 Boss.flip = function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> basic mbison movement
   arr = [200, -200]
   boss.body.velocity.x = arr[Math.round(Math.random())];
   boss.animations.play('run')
   setTimeout(function() {boss.animations.stop();}, 4000) 
+<<<<<<< HEAD
 }
 
 Boss.fire = function(Boogers) {
@@ -91,8 +95,10 @@ Boss.tossBooger = function(boogersGroup, direction) {
     console.log("fire")
   }
 
+=======
+  
+>>>>>>> basic mbison movement
 }
-
 
 
 
