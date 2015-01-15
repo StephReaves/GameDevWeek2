@@ -41,7 +41,6 @@ Boss.create = function() {
   boss.anchor.setTo(0.5, 0.5);
   boss.scale.set(1.0, 1.0);
 
-
 };
 
 Boss.update = function() {
