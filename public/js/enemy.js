@@ -16,9 +16,7 @@ Enemy.create = function() {
 	enemy.setAll('scale.x',0.5);
 	enemy.setAll('scale.y',0.5);
 	enemy.setAll('checkWorldBounds',true);
-	enemy.health = 5;
 
-	// Refactor to have a clean way of populating enemies
 	this.launchEnemy(ryu.x+500);
 };
 
