@@ -29,6 +29,7 @@ Ryu.create = function() {
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
   ryu.health = 100;
+  ryu.animations.add('blink');
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -139,6 +140,7 @@ if (playerKeys.h.isDown) {
 
 Ryu.enemyCollision = function () {
   ryu.damage(3);
+  ryu.animations.play('blink', 3, true);
   damageRyu.play();
   console.log(ryu.health);
 }

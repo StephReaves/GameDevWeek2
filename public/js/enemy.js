@@ -35,6 +35,11 @@ Enemy.update = function() {
 		this.launchGuard(ryu.x+500);	
 	}
 
+	if (guard.body.velocity.x > 10)
+	{
+		guard.body.velocity.x = -30;
+	}
+
 };
 
 
