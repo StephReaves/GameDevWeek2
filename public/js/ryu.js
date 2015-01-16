@@ -138,6 +138,7 @@ if (playerKeys.h.isDown) {
 
 Ryu.enemyCollision = function () {
   ryu.damage(3);
+  damage.play();
   console.log(ryu.health);
 }
 
