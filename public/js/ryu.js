@@ -5,7 +5,7 @@ var attack;
 var music;
 var death;
 var jump;
-var damage;
+var damageRyu;
 var fireRate = 100;
 var nextFire = 0;
 var hadoken;
@@ -18,7 +18,7 @@ Ryu.preload = function() {
   game.load.audio('theme', ['assets/audio/dp_pacmania_stage2.wav']);
   game.load.audio('death', ['assets/audio/death.wav']);
   game.load.audio('jump', ['assets/audio/Jump-SoundBible.com.mp3']);
-  game.load.audio('damage', ['assets/audio/damage.wav']);
+  game.load.audio('damageRyu', ['assets/audio/damage.wav']);
 };
 
 Ryu.create = function() {
@@ -43,14 +43,13 @@ Ryu.create = function() {
   redHadokens.setAll('checkWorldBounds', true);
   redHadokens.setAll('outOfBoundsKill', true);
 
-
   ryu.body.gravity.y = 250;
 
   ryu.animations.add('run', [1,2,3,4], 7, true);
   attack= game.add.audio('attack');
   music = game.add.audio('theme',1,true);
   jump = game.add.audio('jump');
-  damage = game.add.audio('damage');
+  damageRyu = game.add.audio('damageRyu');
   death = game.add.audio('death');
   music.play('',0,1,true);
 
@@ -140,7 +139,7 @@ if (playerKeys.h.isDown) {
 
 Ryu.enemyCollision = function () {
   ryu.damage(3);
-  damage.play();
+  damageRyu.play();
   console.log(ryu.health);
 }
 

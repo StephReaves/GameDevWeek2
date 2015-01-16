@@ -1,9 +1,11 @@
 var Enemy = {};
 var enemy;
 var guard;
+var damage;
 
 Enemy.preload = function() {
 	game.load.image('enemy', 'assets/imgs/enemy.png');
+	game.load.audio('damage', ['assets/audio/damage.wav']);
 };
 
 Enemy.create = function() {
