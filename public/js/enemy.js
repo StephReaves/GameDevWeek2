@@ -1,11 +1,11 @@
 var Enemy = {};
 var enemy;
 var guard;
-var damage;
+var damageGuard;
 
 Enemy.preload = function() {
 	game.load.image('enemy', 'assets/imgs/enemy.png');
-	game.load.audio('damage', ['assets/audio/damage.wav']);
+	game.load.audio('damageGuard', ['assets/audio/damage.wav']);
 };
 
 Enemy.create = function() {
@@ -18,8 +18,9 @@ Enemy.create = function() {
 	enemy.setAll('scale.x',0.5);
 	enemy.setAll('scale.y',0.5);
 	enemy.setAll('checkWorldBounds',true);
+	damageGuard = game.add.audio('damageGuard');
 
-	this.launchEnemy(ryu.x+500);
+	this.launchGuard(ryu.x+500);
 };
 
 Enemy.update = function() {
@@ -31,7 +32,7 @@ Enemy.update = function() {
 	if (guard.health <= 0)
 	{
 		guard.destroy();
-		this.launchEnemy(ryu.x+500);
+		this.launchGuard(ryu.x+500);	
 	}
 
 };
@@ -39,11 +40,12 @@ Enemy.update = function() {
 
 Enemy.hadokenCollision = function() {
 	guard.damage(1);
+	damageGuard.play();
 	hadoken.kill();
 	console.log(guard.health);
 };
 
-Enemy.launchEnemy = function(position) {
+Enemy.launchGuard = function(position) {
 
 	guard = enemy.getFirstExists(false);
 	if (guard) {
