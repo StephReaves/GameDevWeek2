@@ -10,7 +10,7 @@ Enemy.create = function() {
 	enemy = game.add.group();
 	enemy.enableBody = true;
 	enemy.physicsBodyType = Phaser.Physics.ARCADE;
-	enemy.createMultiple(10, 'enemy');
+	enemy.createMultiple(20, 'enemy');
 	enemy.setAll('anchor.x',0.5);
 	enemy.setAll('anchor.y',0.5);
 	enemy.setAll('scale.x',0.5);

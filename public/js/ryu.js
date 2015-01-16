@@ -137,9 +137,9 @@ if (playerKeys.h.isDown) {
 };
 
 Ryu.enemyCollision = function () {
-  ryu.health--;
-  console.log(ryu.health--);
-};
+  ryu.damage(3);
+  console.log(ryu.health);
+}
 
 Ryu.chuckHadoken = function(hadokensGroup, direction) {
   hadoken = hadokensGroup.getFirstExists(false);
