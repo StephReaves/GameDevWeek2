@@ -29,7 +29,6 @@ Ryu.create = function() {
   ryu.body.setSize(20, 32, 5, 16);
   ryu.body.collideWorldBounds = true;
   ryu.health = 100;
-  ryu.animations.add('blink');
 
   Hadokens = game.add.group();
   Hadokens.enableBody = true;
@@ -46,6 +45,7 @@ Ryu.create = function() {
 
   ryu.body.gravity.y = 250;
 
+  ryu.animations.add('blink');
   ryu.animations.add('run', [1,2,3,4], 7, true);
   attack= game.add.audio('attack');
   music = game.add.audio('theme',1,true);
@@ -140,7 +140,7 @@ if (playerKeys.h.isDown) {
 
 Ryu.enemyCollision = function () {
   ryu.damage(3);
-  ryu.animations.play('blink', 3, true);
+  ryu.animations.play('blink', 30, true);
   damageRyu.play();
   console.log(ryu.health);
 }
@@ -179,5 +179,5 @@ Ryu.setHadokenDamage = function(hadoken, redDamage, blueDamage){
 
 Ryu.render = function() {
   game.debug.cameraInfo(game.camera, 32, 32);
-  game.debug.spriteCoords(ryu, 32, 500);
 };
+  game.debug.spriteCoords(ryu, 32, 500);
