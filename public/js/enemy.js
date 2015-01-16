@@ -1,25 +1,26 @@
 var Enemy = {};
 var enemy;
 var guard;
+var damageGuard;
 
 Enemy.preload = function() {
 	game.load.image('enemy', 'assets/imgs/enemy.png');
+	game.load.audio('damageGuard', ['assets/audio/damage.wav']);
 };
 
 Enemy.create = function() {
 	enemy = game.add.group();
 	enemy.enableBody = true;
 	enemy.physicsBodyType = Phaser.Physics.ARCADE;
-	enemy.createMultiple(10, 'enemy');
+	enemy.createMultiple(20, 'enemy');
 	enemy.setAll('anchor.x',0.5);
 	enemy.setAll('anchor.y',0.5);
 	enemy.setAll('scale.x',0.5);
 	enemy.setAll('scale.y',0.5);
 	enemy.setAll('checkWorldBounds',true);
-	enemy.health = 5;
+	damageGuard = game.add.audio('damageGuard');
 
-	// Refactor to have a clean way of populating enemies
-	this.launchEnemy(ryu.x+500);
+	this.launchGuard(ryu.x+500);
 };
 
 Enemy.update = function() {
@@ -31,18 +32,25 @@ Enemy.update = function() {
 	if (guard.health <= 0)
 	{
 		guard.destroy();
-		this.launchEnemy(ryu.x+500);
+		this.launchGuard(ryu.x+500);	
+	}
+
+	if (guard.body.velocity.x > 0)
+	{
+		guard.body.velocity.x = -30;
 	}
 
 };
 
-Enemy.hadokenCollision = function(guard, hadoken) {
-	guard.health -= hadoken.damage;
+
+Enemy.hadokenCollision = function() {
+	guard.damage(1);
+	damageGuard.play();
 	hadoken.kill();
 	console.log(guard.health);
 };
 
-Enemy.launchEnemy = function(position) {
+Enemy.launchGuard = function(position) {
 
 	guard = enemy.getFirstExists(false);
 	if (guard) {
