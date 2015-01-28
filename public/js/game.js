@@ -13,9 +13,8 @@ State.preload = function(){
   Ryu.preload();
   Enemy.preload();
   Boss.preload();
-
-
 };
+
 State.create = function(){
   game.physics.startSystem(Phaser.Physics.ARCADE);
   map = game.add.tilemap('level_one');
@@ -23,16 +22,16 @@ State.create = function(){
   backgroundLayer = map.createLayer('Tile Layer 1');
   backgroundLayer.resizeWorld();
   map.setCollision([721,815,816,817]);
-  Ryu.create();
 
+  Ryu.create();
   Enemy.create();
   Boss.create();
 
   map = game.add.tilemap('level1');
   map.addTilesetImage('background_level1', 'background');
   map.setCollisionBetween(1, 100000, true, 'Collision');
-
 };
+
 State.update = function(){
   game.physics.arcade.collide(ryu, backgroundLayer);
 
@@ -41,8 +40,8 @@ State.update = function(){
   Enemy.update();
 
   Boss.update();
-
 };
+
 State.render = function() {
   Ryu.render();
 };
