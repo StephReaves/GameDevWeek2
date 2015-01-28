@@ -31,17 +31,11 @@ State.create = function(){
   map = game.add.tilemap('level1');
   map.addTilesetImage('background_level1', 'background');
   map.setCollisionBetween(1, 100000, true, 'Collision');
-  // 'ryuman_level1' is the name used in Tiled Map Editor
-  // 'Background' is the name of the layer in the tiled file
-  // this.backgroundLayer = this.map.createLayer('Background');
-  // this.blockedLayer = this.createLayer('Collision');
-  //collision on blockedLayer
-  //resizes the game world
-  //this.backgroundLayer.resizeWorld();
 
 };
 State.update = function(){
   game.physics.arcade.collide(ryu, backgroundLayer);
+
   Ryu.update();
 
   Enemy.update();

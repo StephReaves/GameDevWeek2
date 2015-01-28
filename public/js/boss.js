@@ -16,12 +16,12 @@ Boss.create = function() {
 
   boss = game.add.sprite(330, game.world.height - 180,'bossWalk');
 
-  boss.enableBody = true;		
+  boss.enableBody = true;
   game.physics.arcade.enable(boss);
   boss.body.allowGravity = true;
   boss.body.setSize(20, 32, 5, 16);
   boss.body.collideWorldBounds = true;
-  boss.body.velocity.x = 1
+  boss.body.velocity.x = 1;
   boss.health = 2;
 
   Boogers = game.add.group();
@@ -45,38 +45,39 @@ Boss.create = function() {
 
 Boss.update = function() {
   game.physics.arcade.collide(boss, Hadokens, this.hadokenCollision);
+  game.physics.arcade.collide(boss, backgroundLayer);
 
   var that = this;
   if (game.time.now > bossTimer) {
       setInterval(function() {that.flip()}, 3000);
       // setInterval(function() {that.fire(Boogers)}, 1000);
-  } 
-
-  if (boss.health <= 0) {
-  	boss.destroy();
-  	console.log("boss destroyed")
   }
 
-  setInterval(function() {that.fire(Boogers);}, 10000)
+  if (boss.health <= 0) {
+    boss.destroy();
+    console.log("boss destroyed");
+  }
 
-}
+  setInterval(function() {that.fire(Boogers);}, 10000);
+
+};
 
 Boss.hadokenCollision = function() {
   boss.health--;
-  console.log(boss.health)
-}
+  console.log(boss.health);
+};
 
 Boss.flip = function() {
 
   arr = [200, -200]
   boss.body.velocity.x = arr[Math.round(Math.random())];
   boss.animations.play('run')
-  setTimeout(function() {boss.animations.stop();}, 4000) 
+  setTimeout(function() {boss.animations.stop();}, 4000)
 
 }
 
 Boss.fire = function(Boogers) {
-  this.tossBooger(Boogers, Math.round(Math.random())); 
+  this.tossBooger(Boogers, Math.round(Math.random()));
   setTimeout(function() {boss.animations.stop();}, 4000)
 
 }
