@@ -11,7 +11,7 @@ State.preload = function(){
   game.load.image('background', 'assets/imgs/background_level1.png');
 
   Ryu.preload();
-  Enemy.preload();
+  // Enemy.preload();
   Boss.preload();
 };
 
@@ -24,7 +24,7 @@ State.create = function(){
   map.setCollision([721,815,816,817]);
 
   Ryu.create();
-  Enemy.create();
+  // Enemy.create();
   Boss.create();
 
   map = game.add.tilemap('level1');
@@ -36,9 +36,7 @@ State.update = function(){
   game.physics.arcade.collide(ryu, backgroundLayer);
 
   Ryu.update();
-
-  Enemy.update();
-
+  // Enemy.update();
   Boss.update();
 };
 

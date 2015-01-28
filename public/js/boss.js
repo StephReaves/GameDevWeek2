@@ -14,7 +14,7 @@ Boss.preload = function() {
 
 Boss.create = function() {
 
-  boss = game.add.sprite(330, game.world.height - 180,'bossWalk');
+  boss = game.add.sprite(game.world.width - 100, game.world.height - 180,'bossWalk');
 
   boss.enableBody = true;
   game.physics.arcade.enable(boss);
@@ -48,7 +48,7 @@ Boss.update = function() {
 
   var that = this;
   if (game.time.now > bossTimer) {
-      setInterval(function() {that.flip()}, 3000);
+      setInterval(function() {that.flip();}, 3000);
       // setInterval(function() {that.fire(Boogers)}, 1000);
   }
 
@@ -73,13 +73,13 @@ Boss.flip = function() {
   boss.animations.play('run');
   setTimeout(function() {boss.animations.stop();}, 4000);
 
-}
+};
 
 Boss.fire = function(Boogers) {
   this.tossBooger(Boogers, Math.round(Math.random()));
   setTimeout(function() {boss.animations.stop();}, 4000);
 
-}
+};
 
 Boss.tossBooger = function(boogersGroup, direction) {
   boogers = boogersGroup.getFirstExists(false);
@@ -94,7 +94,7 @@ Boss.tossBooger = function(boogersGroup, direction) {
     console.log("fire");
   }
 
-}
+};
 
 Boss.tossBooger = function(boogersGroup, direction) {
   boogers = boogersGroup.getFirstExists(false);
